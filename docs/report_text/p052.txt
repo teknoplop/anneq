@@ -1,0 +1,63 @@
+                }
+
+        #ifdef DEBUG
+        printf("Allocating memory for errors: %d * bytes\n", epochs * sizeof(double));
+        #endif
+
+        if ((errors = (double  far *)calloc(epochs, sizeof(double))) == NULL)
+                {
+                printf("Calloc failiure on errors\n");
+                exit(1);
+                }
+
+        #ifdef DEBUG
+        printf("Allocating memory for test vector: %d * bytes\n", (bits +
+(int)ceil((double)ann.nodes_0/2)) * sizeof(TRAIN_STR));
+        #endif
+
+        if ((train_vect = (TRAIN_STR  far *)calloc(bits + (int)ceil((double)ann.nodes_0/2),
+sizeof(TRAIN_STR))) == NULL)
+                {
+                printf("Calloc failiure on errors\n");
+                exit(1);
+                }
+
+        #ifdef DEBUG
+        printf("Allocating memory for test vector list: %d * bytes\n", bits * sizeof(int));
+        #endif
+
+        if ((train_list = (int far *)calloc(bits, sizeof(int))) == NULL)
+                {
+                printf("Calloc failiure on errors\n")/*?*/
+                exit(1);
+                }
+        }
+
+void bp_tidyup(void)
+        {
+        int i;
+
+        free((void *)modelline);
+        free((void *)errors);
+        free((void *)train_vect);
+    free((void *)train_list);
+    free((void *)ann.layer_0);
+    free((void *)ann.layer_1);
+    free((void *)ann.layer_2);
+        free((void *)ann.layer_3);
+
+        for (i=0; i<ann.nodes_1; i++)
+                {
+                free((void *)ann.layer_1[i].weights);
+                }
+
+        for (i=0; i<ann.nodes_2; i++)
+                {
+                free((void *)ann.layer_2[i].weights);
+                }
+        free((void *)ann.layer_3[0].weights);
+
+        #ifdef DEBUG
+        printf("Left BP sim OK.\n\n");
+        #endif
+        }

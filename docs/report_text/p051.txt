@@ -1,0 +1,76 @@
+                exit(1);
+                }
+
+        #ifdef DEBUG
+        printf("Allocating memory for layer 1 nodes: %d * bytes\n", (ann.nodes_1+1) *
+sizeof(NODE_STR));
+        #endif
+
+        if ((ann.layer_1 = (NODE_STR  far *)calloc(ann.nodes_1+1, sizeof(NODE_STR))) == NULL)
+                {
+                printf("Calloc failiure on nodes\n");
+                exit(1);
+                }
+
+        #ifdef DEBUG
+        printf("Allocating memory for layer 2 nodes: %d * bytes\n", (ann.nodes_2+1) *
+sizeof(NODE_STR));
+        #endif
+
+        if ((ann.layer_2 = (NODE_STR  far *)calloc(ann.nodes_2+1, sizeof(NODE_STR))) == NULL)
+                {
+                printf("Calloc failiure on nodes\n");
+                exit(1);
+                }
+
+        #ifdef DEBUG
+        printf("Allocating memory for layer 3 nodes: %d * bytes\n",
+ann.nodes_3*sizeof(NODE_STR));
+        #endif
+
+        if ((ann.layer_3 = (NODE_STR  far *)calloc(ann.nodes_3, sizeof(NODE_STR))) == NULL)
+                {
+                printf("Calloc failiure on nodes\n");
+                exit(1);
+                }
+
+        for(i=0; i<ann.nodes_1; i++)
+                {
+                #ifdef DEBUG
+                printf("Allocating memory for layer 1 weights: %d * bytes\n", (ann.nodes_0+1) *
+sizeof(WEIGHT_STR));
+                #endif
+
+                if ((ann.layer_1[i].weights = (WEIGHT_STR  far *)calloc(ann.nodes_0+1,
+sizeof(WEIGHT_STR))) == NULL)
+                        {
+                        printf("Calloc failiure on nodes\n");
+                        exit(1);
+                        }
+                }
+
+        for(i=0; i<ann.nodes_2; i++)
+                {
+                #ifdef DEBUG
+                printf("Allocating memory for layer 2 weights: %d * bytes\n", (ann.nodes_1+1) *
+sizeof(WEIGHT_STR));
+                #endif
+
+                if ((ann.layer_2[i].weights = (WEIGHT_STR  far *)calloc((ann.nodes_1+1),
+sizeof(WEIGHT_STR))) == NULL)
+                        {
+                        printf("Calloc failiure on nodes\n");
+                        exit(1);
+                        }
+                }
+
+        #ifdef DEBUG
+        printf("Allocating memory for layer 3 weights: %d * bytes\n", (ann.nodes_2+1) *
+sizeof(WEIGHT_STR));
+        #endif
+
+        if ((ann.layer_3[0].weights = (WEIGHT_STR  far *)calloc((ann.nodes_2+1),
+sizeof(WEIGHT_STR))) == NULL)
+                {
+                printf("Calloc failiure on nodes\n");
+                exit(1);

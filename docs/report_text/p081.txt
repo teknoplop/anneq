@@ -1,0 +1,76 @@
+/*
+     FILENAME:                LMS.C
+
+     DESCRIPTION:   Main program for LMS equaliser simulator.
+
+     RESTRICTIONS:  None
+
+     VERSION:                 1    29/03/95       Original version.
+                              2    08/04/95       Remove biases from structures -
+just use one extra node in the layer above.
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <time.h>
+#include <math.h>
+#include <ctype.h>
+#include <string.h>
+#include "eq_funcs.h"
+#include "lms.h"
+
+void main(int no_pars, char *par_txt[])
+     {
+     double         error;                        /* Current error of equaliser's output */
+     double              ber = 0;                           /* Holds the bit error
+rate */
+     double              signal;                            /* Next bit to transmit */
+     double              failiures = 0;
+     double              mean_err;
+     time_t              t;                                      /* Variable used to
+seed random number generator */
+     char                path[100];                         /* Holds path that .exe
+file is in */
+     int                 no_errors;                         /* Holds the number of
+errors occurred */
+     int                      test;                              /* Holds whether to
+find BER for equaliser */
+     int                 i, j, bit_no;                 /* Counters in FOR loops */
+     int                      run_num;                  /* Current trial number */
+     int                      delay_count;                  /* Counts down whilst
+delaying equalisation */
+     int                      fail;
+
+/* Get path name */
+
+     strncpy(path, par_txt[0], strlen(par_txt[0]) - strlen("LMS.EXE"));
+     path[strlen(par_txt[0]) - strlen("LMS.EXE")] = '\0';
+
+/* Initialize LMS equalizer */
+
+     lms_init(path);
+
+/* Find out whether to test the BER of equaliser after training */
+
+     test = params(no_pars, par_txt);
+
+/* Start simulations */
+
+     for (run_num=0; run_num<runs; run_num++)
+          {
+          gotoxy(x, y);
+          printf("TRIAL:%03d",run_num+1);
+
+     fail = 1;
+
+     while(fail)
+          {
+
+/* Seed the random number generator */
+
+          time(&t);
+               srand((unsigned)t);
+
+/* Reset delay lines and equalizer weights */
+
+               for (i=0; i<m_taps; i++)

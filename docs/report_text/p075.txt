@@ -1,0 +1,76 @@
+void ffwd_ada(NODE_STR far *inputs, NODE_STR far *nodes, int no_inputs, int no_nodes)
+     {
+     int          i,j;
+     double  input;
+
+     for (i=0; i<no_nodes; i++)
+          {
+          input = 0.0;
+          for(j=0; j<no_inputs; j++)
+               {
+               input += inputs[j].output * nodes[i].weights[j].weight;
+               }
+          nodes[i].output =input;
+          }
+     }
+
+
+// Ignore
+
+int     pick_rand(int *list, int length)
+     {
+     int          i;
+     int          index, value;
+
+     index = (int)(((double)rand()/RAND_MAX) * (length-1));
+
+     value = list[index];
+
+     for (i=index; i<length-1; i++)
+          {
+          list[i] = list[i+1];
+          }
+     return value;
+     }
+
+// Ignore
+
+double next_pn(int *pn_shift)
+     {
+     int     i;
+     double signal;
+
+   signal = (double)(pn_shift[1] ^ pn_shift[4]);
+
+     for(i=4; i>0; i--)
+          {
+          pn_shift[i] = pn_shift[i-1];
+          }
+
+     pn_shift[0] = (int)signal;
+
+     if (signal == 0)
+          {
+          signal = -1.0;
+          }
+     return signal;
+     }
+
+/*
+     FUNCTION PROTOTYPE:           void shift_right_layer(NODE_STR far *layer, int
+no_nodes)
+
+     DESCRIPTION:                  Shift values in layer one plave to right
+*/
+
+void shift_right_layer(NODE_STR far *layer, int no_nodes)
+     {
+     int     i;
+
+     for(i=no_nodes-1; i>0; i--)
+          {
+          layer[i].output = layer[i-1].output;
+          }
+     }
+
+/*

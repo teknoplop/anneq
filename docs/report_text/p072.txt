@@ -1,0 +1,75 @@
+     return result;
+     }
+
+/*
+     FUNCTION PROTOTYPE:           void update_weights_sf(NODE_STR far *layer2, int nodes1,
+int nodes2, double lr, double mc)
+
+     DESCRIPTION:                  Updates weights between layers 1 and 2 during epoch
+training with BP alogorithm
+*/
+
+void update_weights_sf(NODE_STR far *layer1, NODE_STR far *layer2, int nodes1, int nodes2)
+     {
+     int          i,j;
+
+     for(i=0; i<nodes2; i++)
+          {
+          for(j=0; j<nodes1; j++)
+               {
+               layer2[i].weights[j].delta_sf += layer2[i].derivative *
+layer1[j].output;
+               }
+          }
+     }
+
+/*
+     FUNCTION PROTOTYPE:           void update_weights_fi(NODE_STR far *layer2, int nodes1,
+int nodes2, double lr, double mc)
+
+     DESCRIPTION:                  Updates weights between layers 1 and 2 at end of epoch
+with BP alogorithm
+*/
+
+void update_weights_fi(NODE_STR far *layer2, int nodes1, int nodes2, double lr, double mc)
+     {
+     int          i,j;
+
+     for(i=0; i<nodes2; i++)
+          {
+          for(j=0; j<nodes1; j++)
+               {
+               layer2[i].weights[j].weight += layer2[i].weights[j].delta =
+layer2[i].weights[j].delta_sf * lr * (1.0 - mc) +
+
+                                                  mc * layer2[i].weights[j].delta;
+               layer2[i].weights[j].delta_sf = 0.0;
+               }
+          }
+     }
+
+/*
+     FUNCTION PROTOTYPE:           void derivatives(NODE_STR far *layer1, NODE_STR far
+*layer2, int nodes1, int nodes2)
+
+     DESCRIPTION:                  Calculates local derivatives for nodes in layer 1
+*/
+
+void derivatives(NODE_STR far *layer1, NODE_STR far *layer2, int nodes1, int nodes2)
+     {
+     int     i,j;
+     double sum;
+
+     for(i=0; i<nodes1; i++)
+          {
+          sum = 0.0;
+          for(j=0; j<nodes2; j++)
+               {
+               sum += layer2[j].weights[i].weight*layer2[j].derivative;
+               }
+          layer1[i].derivative = sum * DER_SIGMOID(layer1[i].output);
+          }
+     }
+
+/*
+     FUNCTION PROTOTYPE:           void ffwd_sig(NODE_STR far *inputs, NODE_STR far *nodes,

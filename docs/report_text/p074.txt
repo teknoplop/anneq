@@ -1,0 +1,75 @@
+     DESCRIPTION:                  Prints changes in weights for layer 2.
+*/
+
+void print_deltas(NODE_STR far *layer2, int nodes1, int nodes2)
+     {
+
+     int i,j;
+
+     for (i=0; i<nodes1; i++)
+          {
+          for (j=0; j<nodes2; j++)
+               {
+               printf("%+01.5lf ", layer2[j].weights[i].delta);
+               }
+          printf("\n");
+          }
+     printf("\n\n");
+     }
+
+/*
+     FUNCTION PROTOTYPE:           int get_state(FIR_MODEL_STR far *data, int length)
+
+     DESCRIPTION:                  Work out which node in RBF layer should fire.
+*/
+
+int get_state(FIR_MODEL_STR far *data, int length)
+     {
+     int          state = 0;                         /* State that data is in */
+     int          power;                        /* Holds current power weighting */
+     int     i;                                      /* Counter in FOR loop */
+
+     power = (int)pow(2, length-1);
+
+     for (i=0; i<length; i++)
+          {
+          if (data[i].value == 1)
+               {
+               state += power;
+               }
+          power /= 2;
+          }
+     return state;
+     }
+
+/*
+     FUNCTION PROTOTYPE:           void dist(NODE_STR far *inputs, NODE_STR far *nodes, int
+no_inputs, int no_nodes, double width)
+
+     DESCRIPTION:                  Calculates Euclidean distance for layer nodes.
+*/
+
+void dist(NODE_STR far *inputs, NODE_STR far *nodes, int no_inputs, int no_nodes, double
+width)
+     {
+     int          i,j;
+     double distance;
+
+     for(i=0; i<no_nodes; i++)
+          {
+          distance = 0.0;
+          for(j=0; j<no_inputs; j++)
+               {
+               distance += (nodes[i].weights[j].weight - inputs[j].output) *
+(nodes[i].weights[j].weight - inputs[j].output);
+               }
+          nodes[i].output = RAD_BASIS(sqrt(distance));
+          }
+     }
+
+/*
+     FUNCTION PROTOTYPE:           void ffwd_ada(NODE_STR far *inputs, NODE_STR far *nodes,
+int no_inputs, int no_nodes)
+
+     DESCRIPTION:                  Feed signals forward through an ADALINE layer
+*/

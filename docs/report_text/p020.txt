@@ -1,0 +1,13 @@
+[Figure 5.2: Optimum Bayesian boundary for channel 1. Axes -3 to 3 on both (x(n) horizontal, x(n-1) vertical, unlabelled). Noise-free points only: x marks (class -1) at (-1.5,-1.5), (-1.5,-0.5), (-0.5,+0.5), (-0.5,+1.5); dots (class +1) at (+0.5,-1.5), (+0.5,-0.5), (+1.5,+0.5), (+1.5,+1.5). Boundary vertical at x(n) ~ -0.5 below x(n-1) ~ -0.7, curving diagonally to x(n) ~ +0.5 at x(n-1) ~ +0.7, then vertical to the top.]
+
+A small \eta guarantees convergence, but convergence time takes longer as the value of \eta decreases.
+
+It is noted that, excluding the bias node, the ADALINE equaliser is identical to the FIR or transversal filter, which is a well proved and established design of adaptive equaliser. Therefore the performance of the ADALINE equaliser is taken as standard and the other equalisers are compared to it.
+
+5.3 Testing the ADALINE equaliser
+
+The ADALINE equaliser was first tested using channel 1, for which, the optimal Bayesian decision boundary for a two input equaliser is shown in figure 5.2. Again a x represents a co-ordinate that should be classified as -1, and a • as +1. The adjustable parameters for the ADALINE equaliser were I, the number of network inputs; SNR, the signal to noise ratio of the channel; and \eta, the learning rate of the LMS algorithm.
+
+For a constant SNR of 21dBs and a learn rate of 0.01, the number of network inputs were set to 1, 2, 3, 7 and 11 in each test. The resulting error signals are plotted in figure 5.3. It can be seen that increasing the number of inputs reduces the final error of the equaliser. There is a point at which increasing the number of inputs offers little extra benefit, in this example it is 7 inputs. Increasing the number of inputs above 7 would only add to the complexity of the structure.
+
+The effect of altering the learning rate, \eta , was investigated by setting the SNR to 21 dBs and the number of inputs to 7. Figure 5.4 shows a plot of the error signals for varying \eta. It can be seen that a learning rate of 0.1 makes the network unstable, and the error never converges. Also, with a learning rate of 0.0001, the network remains stable, but the converge is very slow. Convergence to an acceptable error level at this rate would take tens of thousands of training bits. The optimum learning rate shown is 0.01.

@@ -1,0 +1,11 @@
+[Figure 2.3: Experimental Gaussian noise plotted against ideal curve. X axis "Range" from -1 to 1 (ticks every 0.2); Y axis "Probability Distribution" from 0 to 150 (ticks 0, 50, 100, 150). A noisy experimental histogram trace follows a smooth ideal bell curve centred on 0 with peak about 103; the noisy trace peaks near 128.]
+
+    H[z] = w_0 + w_1 z^-1 + w_2 z^-2 + ... + w_(M-1) z^-(M-1)
+
+The output of the FIR filter, c(n), is given by the sum of the values on the delay line multiplied by their respective weights.
+
+    c(n) = \sum_{l=0}^{M-1} w_l d(n-l)
+
+Although H[z] may have 10 or more coefficients an a real channel, equaliser testing is performed on 2 or 3 coefficient models to keep down simulation times and keep the training data simple.
+
+[Figure 2.4: M tap FIR filter used to model channel's transfer response. Input d(n) feeds a tapped delay line of Z^-1 blocks giving d(n-1), d(n-2), ..., d(n-(M-1)); each tap passes through a weight w_0, w_1, w_2, ..., w_(M-1); the weighted taps are summed by a chain of adders to give the output c(t).]

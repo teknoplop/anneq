@@ -1,0 +1,19 @@
+where δ_ik is the Kronecker delta which equals 1 if i=k, otherwise equals 0. u_j(n) is the output from input node j. The following initial condition is assumed:
+
+π_ij^k(0) = 0
+
+The RTRL algorithm proceeds as follows:
+
+1. Feed signals throughout the network.
+2. Calculate error signal from the network output:
+   e(n) = d(n) - y(n)
+3. Calculate set of sensitivities for each weight with equation (7.1).
+4. Update the weights with:
+   w_ij(n+1) = w_ij(n) + η e(n) π_ij^0
+5. Go back to step 1 until trained.
+
+7.3 Testing the RNN equaliser
+
+When the RNN equaliser was tested on both channels 1 and 2 it was found to converge well in noisy situations. However, the RNN was very sensitive to the values for the learning rate and the structure size. If the learning rate was too high then the RNN became unstable very quickly, unlike the backpropagation algorithm which tended to recover after a while.
+
+Figure 7.1 shows the convergence plot for the RNN equaliser for channel 1 with 21 dBs SNR. Figure 7.2 shows the BER performance for channel 1 over a range of SNRs. For both figures the RNN had two inputs, three output nodes and a learning rate of 0.005.

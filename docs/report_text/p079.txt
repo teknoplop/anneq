@@ -1,0 +1,75 @@
+
+/* Load up simulation constants */
+
+     sprintf(filename, "%sLMS_CON.TXT", path);
+     if ((consts_file = fopen(filename, "rt")) != NULL)
+          {
+          fscanf(consts_file, "%d%d%lf%d%d%d%lf", &m_taps, &bits, &snr, &runs, &delay,
+&ann.nodes_0, &ann.learn_rate);
+          fclose(consts_file);
+          }
+     else
+          {
+          printf("\n\nFile %s not found", filename);
+          exit(1);
+          }
+
+     ann.nodes_1 = 1;
+
+/* Allocate memory for channel model FIR filter */
+
+     if ((modelline = (FIR_MODEL_STR far *)calloc(m_taps, sizeof(FIR_MODEL_STR))) == NULL)
+          {
+          printf("Calloc failiure on modelline");
+          exit(1);
+          }
+
+/* Load in channel model weights */
+
+     sprintf(filename, "%sWEIGHTS.TXT", path);
+     if ((weights_file = fopen(filename, "rt")) != NULL)
+          {
+          for(i=0; i<m_taps; i++)
+               {
+               fscanf(weights_file, "%lf\n", &modelline[i].weight);
+               }
+          fclose(weights_file);
+          }
+     else
+          {
+          printf("\n\nFile %s not found", filename);
+          exit(1);
+          }
+
+/* Allocate memory for ann layers */
+
+     if ((ann.layer_0 = (NODE_STR  far *)calloc(ann.nodes_0+1, sizeof(NODE_STR))) == NULL)
+          {
+          printf("Calloc failiure on input nodes\n");
+          exit(1);
+          }
+
+     if ((ann.layer_1 = (NODE_STR  far *)calloc(1, sizeof(NODE_STR))) == NULL)
+          {
+          printf("Calloc failiure on input nodes\n");
+          exit(1);
+          }
+
+/* Allocate each node a weight vector */
+
+     if ((ann.layer_1[0].weights = (WEIGHT_STR far *)calloc(ann.nodes_0+1,
+sizeof(WEIGHT_STR))) == NULL)
+          {
+          printf("Calloc failiure on weights\n");
+          exit(1);
+          }
+
+/* Allocate memory for square error record */
+
+     if ((errors = (double  far *)calloc(bits, sizeof(double))) == NULL)
+          {
+          printf("Calloc failiure on errors\n");
+          exit(1);
+          }
+
+/* Allocate memory for square error */

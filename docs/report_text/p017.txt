@@ -1,0 +1,15 @@
+a • should be classified as +1. Also shown on the plot are 1000 samples of received data with a SNR of 16 dB, giving an idea of the spread of received co-ordinates under noisy conditions.
+
+Bayes presented a method for constructing an optimum decision function. The decision boundary for the above channel is plotted on figure 4.6 in red. Anything to the left of this boundary is classified by the Bayes function as a -1, everything to the right as a +1. ANNs are function approximaters and figure 4.7 shows the output surface of the Bayes function for the range of co-ordinates in figure 4.6. It is this surface that the ANN should approximate.
+
+Table 4.1 - Possible received patterns and sequences that generated them.
+
+    d(n)   d(n-1)   d(n-2)   x(n)    x(n-1)
+    -1     -1       -1       -1.5    -1.5
+    -1     -1       +1       -1.5    -0.5
+    -1     +1       -1       -0.5    +0.5
+    -1     +1       +1       -0.5    +1.5
+    +1     -1       -1       +0.5    -1.5
+    +1     -1       +1       +0.5    -0.5
+    +1     +1       -1       +1.5    +0.5
+    +1     +1       +1       +1.5    +1.5

@@ -1,0 +1,75 @@
+                if (test)
+                        {
+                        #ifndef DEBUG
+                        gotoxy(x-10, y);
+                        printf("TESTING    ");
+                        #else
+                        printf("Starting Testing ...\n");
+                        #endif
+
+/* Reset error counter */
+
+                        no_errors = 0;
+
+/* Reset delay lines */
+
+                        for(i=0; i<10000; i++)
+                                {
+
+/* Add next preamble bit into channel model */
+
+                                desired = modelline[0].value = sign(2.0*URAND-1.0);
+
+/* Calculate signal and add to equalilzer shift register */
+
+                                ann.layer_0[0].output = fir_output(modelline, m_taps) +
+noise(snr);
+
+/* Feed the signals through the 3 layers */
+
+                                ffwd_sig(ann.layer_0, ann.layer_1, ann.nodes_0+1, ann.nodes_1);
+                                ffwd_sig(ann.layer_1, ann.layer_2, ann.nodes_1+1, ann.nodes_2);
+                                ffwd_sig(ann.layer_2, ann.layer_3, ann.nodes_2+1, ann.nodes_3);
+
+/* Calculate output of equalizer and then work out its error */
+
+                                if (sign(ann.layer_3[0].output) != desired)
+                                        {
+                                        no_errors++;
+                                        }
+
+                                for(j=ann.nodes_0-1; j>0; j--)
+                                        {
+                                        ann.layer_0[j].output = ann.layer_0[j-1].output;
+                                        }
+                                shift_right_fir(modelline, m_taps);
+                                }
+                        #ifndef DEBUG
+                        gotoxy(x-25, y);
+                        printf("LAST BER:%05d", no_errors);
+                        #else
+                        printf("LAST BER:%05d\n", no_errors);
+                        #endif
+                        ber += (double)no_errors/10000;
+                        }
+                }
+        #ifdef DEBUG
+        clrscr();
+        print_weights(ann.layer_1, ann.layer_0, ann.nodes_0, ann.nodes_1);
+        print_weights(ann.layer_2, ann.layer_1, ann.nodes_1, ann.nodes_2);
+        print_weights(ann.layer_3, ann.layer_2, ann.nodes_2, ann.nodes_3);
+        printf("\n");
+        while(!kbhit());
+        getch();
+        #endif
+
+/* Store mean errors in a text file */
+
+        if ((output_file = fopen("e:\\temp\\errors.txt", "wt")) == NULL)
+                {
+                printf("File errors.txt cannot be created");
+                exit(1);
+                }
+
+        for (i=0; i<epochs; i++)
+                {

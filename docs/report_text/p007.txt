@@ -1,0 +1,25 @@
+2. Modelling an ISI Channel
+
+This section describes how a digital communications channel that suffers from ISI is modelled in a simple and easily coded way.
+
+2.1 Basic channel representation
+
+Figure 2.1 shows a block diagram of a simple channel model represented by the channel transfer function, h[.] and the additive Gaussian noise, g(t). The data transmitted, d(t), is passed through the channel and is received as x(t).
+
+    x(t) = h[d(t)] + g(t)                                        (2-1)
+
+Although modern transmission systems use techniques such as Frequency Shift Keying (FSK) and Quadrature Phase Shift Keying (QPSK), it is easiest to model ISI using baseband Pulse Amplitude Modulation (PAM). Samples of the analogue signals are taken every T seconds, where T is the symbol period of d(t). Figure 2.2 shows the received signal x(t), used in figure 1.1, sampled in the middle of each symbol interval to give a discrete signal x(nT), where n is the symbol number. Therefore the channel model, h[.] becomes a discrete transform, H[z]. The discrete version of equation (2-1) is
+
+    x(nT) = d(nT)H[z] + g(nT)                                    (2-2)
+
+Because T is a constant, d(nT), g(nT) and x(nT) can be written as d(n), g(n) and x(n) respectively, where n represents the time that symbol number n is transmitted. Equation (2-2) is re-written as
+
+    x(n) = d(n)H[z] + g(n)                                       (2-3)
+
+A simple model for a channel can now be simulated by finding a way to code the transform H[z] and the noise source g(n).
+
+2.2 Channel Gaussian noise source
+
+The Gaussian noise signal g(n) has a normal distribution and zero mean[8]. The Signal to Noise Ratio (SNR) of the channel is measured in decibels and is given in reference [9] by:
+
+[Figure 2.1: Simple model of a transmission channel. Block diagram: transmitted sequence d(t) -> channel transfer function h[.] -> c(t) -> summing node (Sigma), which also takes channel noise g(t) -> received signal x(t).]

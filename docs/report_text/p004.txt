@@ -1,0 +1,26 @@
+NOTATION
+
+n            Bit number of transmitted signal.
+d(n)         Preamble signal.
+c(n)         Output of channel model transfer function.
+g(n)         Gaussian noise signal.
+\mu_m        Mean of a random signal.
+\sigma^2     Variance of a random signal.
+x(n)         Received signal.
+y(n)         Analogue output of equaliser.
+o(n)         Digital output of equaliser.
+H[z]         Channel model transfer function
+M            Number of taps in channel model FIR filter.
+w_i          Constant weight i in a FIR filter.
+w_ij(n)      Weight between node i and node j in a MLP ANN.
+\eta         Learning rate for training algorithms.
+I            Number of inputs to equaliser.
+y_j(n)       Output of node j in an MLP.
+v_j(n)       Sum of weighted inputs to node j in an MLP.
+\varphi[.]   Activation function.
+\epsilon(n)  Sum of squared errors of ANN.
+\delta_j(n)  Local derivative of weights w.r.t \epsilon(n) at node j in a MLP.
+\pi^k_ij(n)  Sensitivity factor for output k w.r.t. weight w_ij(n) in a RNN.
+\delta_ij    Kronecker delta.
+||.||        Euclidean distance function.
+\sigma_w     Width of Gaussian function in RBF network.

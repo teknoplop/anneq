@@ -1,0 +1,54 @@
+
+References
+
+[1] S.U.H. Qureshi, "Adaptive Equalisation," IEEE Communications Magazine, pp 9-16,
+March 1982.
+
+[2] G. Proakis, "Advances in Equalisation for Intersymbol Interference," Advances in
+Communication Systems, volume 4, New York Academic Press, 1975.
+
+[3] W. Lucky, "Automatic Equalisation for Digital Communications," Bell Systems Technical
+Journal, pp. 547-588, April 1965.
+
+[4] W. Lucky, J. Salz and E. J. Weldon Jr., Principles of Data Communication, New
+York:McGraw-Hill, 1968.
+
+[5] E. Austen, "Decision-Feedback Equalisation for Digital Communication Over Dispersive
+Channels," M. I. T. Lincoln lab. Technical Report 437, 1967.
+
+[6] J. Gibson, S. Siu and C. F. N. Cowan, "Multi-layer Perceptron Structures Applied to
+Adaptive Equalisers for Data Communications," ICASSP-89, pp. 1183-1186, 1989.
+
+[7] MATLAB Neural Network Toolbox Manual, Mathworks, 1994.
+
+[8] S. Bendat, A. G. Piersol, Random Data:Analysis and Measurement Procedures, Wiley,
+1971.
+
+[9] J. Miller, S. V. Ahamed, Digital Transmission Systems and Networks; Volume 1,
+Computer Science Press, 1987
+
+[10] E. Ziemer, Introduction to Digital Communication, Macmillan Publising Company, 1992.
+
+[11] Richard P. Lippman, "An introduction to Computing with Neural Nets,” IEEE ASSP
+Magazine, pp 4-21, April 1987.
+
+[12] Drew van Camp, “Neurons for Computers,” Scientific American, pp 170-172, September
+1992.
+
+[13] Dan Hammerstrom, "Working with Neural Networks," IEEE Spectrum, pp 46-53, July
+1993.
+
+{14] S. Haykin, Neural Networks, Macmillan College Publishing, 1994.
+
+[15] B. Widrow, M. A. Lehr, "30 years of adaptive neural networks: Perceptron, MADALINE,
+and backpropagation,” Proceedings of the IEEE 78, pp 1415-1442, 1990.
+
+[16] B. Widrow, S. D. Stearns, Adaptive Signal Procressing, Prentice-Hall, 1985
+
+[17] E. E. Newhall, S. U. H. Querehsi, C. F. Simone, "A Technique for finding Approximate
+Inverse Systems and Its Application to Equalization," IEEE transactions on
+Communicatuion Technology, vol. 6., pp1116-1127, December 1971.
+
+[18] G. Kechriotis, E. Zervas, E. S. Manolakos, “Using Recurrent Neural Networks for Adaptive
+Communication Channel Equalisation," IEEE transactions on Neural Networks, vol. 5,
+

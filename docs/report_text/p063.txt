@@ -1,0 +1,74 @@
+/* Set start bit */
+
+          signal = 1.0;
+
+/* Remember how long to delay the desired response */
+
+          delay_count = ann.nodes_0;
+          gotoxy(x-10, y);
+          printf("TRAINING ");
+
+          for (bit_no = 0; bit_no<bits; bit_no++)
+               {
+
+/* Add next preamble bit into channel model */
+
+               delayline[0].value = modelline[0].value = signal;
+
+/* Calculate signal and add to equaliser shift register */
+
+               ann.layer_0[0].output = fir_output(modelline, m_taps) + noise(snr);
+
+/* Only start equalization if desired response has been delayed enough */
+
+               if (delay_count == 0)
+                    {
+
+/* Get state that the output should be in */
+
+                    index = get_state(delayline, memory);
+
+/* Update the mean of the centre given to that state */
+
+                    for(j=0; j<ann.nodes_0; j++)
+                         {
+                         ann.layer_1[index].weights[j].weight *=
+ann.layer_1[index].counter;
+                         ann.layer_1[index].weights[j].weight +=
+ann.layer_0[j].output;
+                         }
+
+          ann.layer_1[index].counter++;
+
+                    for(j=0; j<ann.nodes_0; j++)
+                         {
+                         ann.layer_1[index].weights[j].weight /=
+ann.layer_1[index].counter;
+               }
+                    }
+               else
+                    {
+
+/* Equalization has not begun so decrease delay counter */
+
+                    delay_count--;
+                    }
+
+/* Shift channel model and equalizer shift registers one place to the right */
+
+        signal = next_pn(pn_shift);
+               shift_right_layer(ann.layer_0, ann.nodes_0);
+               shift_right_fir(modelline, m_taps);
+               shift_right_fir(delayline, memory);
+               }
+
+/* Now work out BER by testing over 10000 bits */
+
+          if (test)
+               {
+               gotoxy(x-10, y);
+               printf("TESTING    ");
+
+/* Reset error counter */
+
+               no_errors = 0;

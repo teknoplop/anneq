@@ -1,0 +1,75 @@
+                        errors[i] += error_run[i];
+                        }
+
+/* Now work out BER by testing over 10000 bits */
+
+                if (test)
+                        {
+                        gotoxy(x-10, y);
+                        printf("TESTING   ");
+
+/* Reset error counter */
+
+                        no_errors = 0;
+
+                        for(i=0; i<10000; i++)
+                                {
+
+/* Add next preamble bit into channel model */
+
+                                delayline[0].value = modelline[0].value = sign((2.0*URAND)-1.0);
+
+/* Calculate signal and add to equaliser shift register */
+
+                                ann.layer_0[0].output = fir_output(modelline, m_taps) +
+noise(snr);
+
+/* Copy delayed outputs to inputs */
+
+                                for(j=0; j<ann.nodes_1; j++)
+                                        {
+                                        ann.layer_0[ann.nodes_0+1+j].output =
+ann.layer_1[j].output;
+                                        }
+
+/* Feed inputs through net */
+
+                                ffwd_sig(ann.layer_0, ann.layer_1, ann.nodes_0+1, ann.nodes_1);
+
+/* Calculate output of equalizer and then work out its error */
+
+                                if (sign(ann.layer_1[0].output) != delayline[delay].value)
+                                        {
+                                        no_errors++;
+                                        }
+
+/* Shift channel model and equalizer shift registers one place to the right */
+
+                                shift_right_layer(ann.layer_0, ann.nodes_0);
+                                shift_right_fir(modelline, m_taps);
+                                shift_right_fir(delayline, delay+1);
+                                }
+                        gotoxy(x-25, y);
+                        printf("ERRORS:%05d", no_errors);
+                        ber += (double)no_errors/10000;
+                        }
+                gotoxy(x-4, y+1);
+                printf("              ");
+                }
+
+/* Store mean errors in a text file */
+
+        save_doubles(errors, bits-delay, runs, path, "ERRORS.TXT");
+
+/* Store mean bit error rate in a text file */
+
+        save_doubles(&ber, 1, runs, path, "BER.TXT");
+
+/* Store mean number of failiures in a text file */
+
+        save_doubles(&failiures, 1, runs, path, "FAIL.TXT");
+
+/* Clean up memory */
+
+        rnn_tidyup();
+        }

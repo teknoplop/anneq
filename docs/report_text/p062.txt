@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <time.h>
+#include <math.h>
+#include <ctype.h>
+#include <string.h>
+#include "eq_funcs.h"
+#include "rb.h"
+
+void main(int no_pars, char *par_txt[])
+        {
+        double                  ber = 0;                /* Holds the bit error rate */
+    double                      signal;
+        double                  output;
+        time_t                  t;                              /* Variable used to seed random
+number generator */
+        char                    path[100];              /* Holds path that .exe file is in */
+        int                     no_errors;              /* Holds the number of errors occurred */
+        int                             test = 0;               /* Holds whether to find BER for
+equaliser */
+        int                             index;                  /* Holds which state the output
+should be in */
+        int                             i, j;                   /* Counters for FOR loops */
+        int                             run_num;                /* Holds the current trial number
+*/
+        int                             delay_count;    /* Counts down whilst delaying
+equalisation */
+
+/* Get path name */
+
+        strncpy(path, par_txt[0], strlen(par_txt[0]) - strlen("RB.EXE"));
+        path[strlen(par_txt[0]) - strlen("RB.EXE")] = '\0';
+
+/* Initialize LMS equalizer */
+
+        rb_init(path);
+
+/* Find out whether to test the BER of equaliser after training */
+
+        test = params(no_pars, par_txt);
+
+        for (run_num=0; run_num<runs; run_num++)
+                {
+                gotoxy(x, y);
+                printf("TRIAL:%03d",run_num+1);
+
+/* Seed the random number generator */
+
+         time(&t);
+                srand((unsigned)t);
+
+/* Reset delay lines and equalizer weights */
+
+                for(i=0; i<ann.nodes_1; i++)
+                        {
+                        for(j=0; j<ann.nodes_0; j++)
+                                {
+                                ann.layer_1[i].weights[j].weight = 0.0;
+                                }
+                        }
+
+                for (i=0; i<m_taps; i++)
+                        {
+                        modelline[i].value = -1.0;
+                        }
+
+                for (i=0; i<ann.nodes_0; i++)
+                        {
+                        ann.layer_0[i].output  = -1.0;
+                        }
+
+                for (i=0; i<ann.nodes_1; i++)
+                        {
+                        ann.layer_1[i].counter  = 0;
+                        }

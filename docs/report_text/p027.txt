@@ -1,0 +1,8 @@
+[Figure 6.2: Adaptation curves for backpropagation equaliser]
+Log y-axis "Ensemble Squared Error" 1E-05 to 1E+01; x-axis "Epoch number" 0 to 1000. Legend: Channel 1 (solid), Channel 2 (dashed). One curve (red, apparently channel 1) drops from ~1 to ~1E-02 within ~10 epochs, ~1.5E-03 by epoch 100, then slowly to ~1E-04 at epoch 1000. The other (green/black, apparently channel 2) stays on a plateau ~0.7 until epoch ~240, then falls to ~1E-02 by epoch ~320, ~2E-03 at 500, ~6E-04 at epoch 1000.
+
+[Figure 6.3: Backpropagation decision boundaries for (a) channel 1, (b) channel 2.]
+Both panels: x-axis x(n) -2 to 2, y-axis x(n-1) -2 to 2. (a) x points at (-0.5,1.5), (-0.5,0.5), (-1.5,-0.5), (-1.5,-1.5); filled circles at (1.5,1.5), (1.5,0.5), (0.5,-0.5), (0.5,-1.5). Boundary roughly a line from (0.25,2) to (-0.3,-2), slightly curved. (b) x points at (-1.5,0.5), (-1.5,-1.5), (0.5,1.5), (0.5,-0.5); circles at (-0.5,0.5), (-0.5,-1.5), (1.5,1.5), (1.5,-0.5). Boundary: a closed-top lobe around the circles at x(n)=-0.5 (peak ~ (-0.4,1.05), sides near x=-1.0 and x=0.1, widening to (-1.1,-2) and (0.4,-2)), plus a near-vertical line at x(n)≈1.0 from top to bottom.
+
+[Figure 6.4: Backpropagation equaliser function surface for channel 2.]
+3-D surface y(n) (-1 to 1) over x(n) and x(n-1) each -2 to 2. Flat at -1 for low x(n) (x(n) < about -1), steps up to a ridge near +1 around x(n)≈-0.5 (with a dip/saddle region near x(n-1) about 0 to 1), drops back toward -1 around x(n)≈0 to 0.5 for low x(n-1), then rises to a plateau at +1 for x(n) > about 1.

@@ -1,0 +1,76 @@
+                        }
+
+                for(i=0; i<ann.nodes_3; i++)
+                        {
+                        for(j=0; j<ann.nodes_2+1; j++)
+                                {
+                                ann.layer_3[i].weights[j].weight = 0.3 * URAND
+/*(2.4/ann.nodes_1)*/;
+                                ann.layer_3[i].weights[j].delta = 0.0;
+                                ann.layer_3[i].weights[j].delta_sf = 0.0;
+                                }
+                        }
+
+/* Set Bias nodes output */
+
+                ann.layer_0[ann.nodes_0].output = -1.0;
+                ann.layer_1[ann.nodes_1].output = -1.0;
+                ann.layer_2[ann.nodes_2].output = -1.0;
+
+                        gotoxy(1, 1);
+                        print_weights(ann.layer_1, ann.layer_0, ann.nodes_0+1, ann.nodes_1);
+                        print_weights(ann.layer_2, ann.layer_1, ann.nodes_1+1, ann.nodes_2);
+                        print_weights(ann.layer_3, ann.layer_2, ann.nodes_2+1, ann.nodes_3);
+                        printf("\n");
+                        while(!kbhit());
+                        getch();
+
+/* Start training */
+
+                for(i=0; i<epochs; i++)
+                        {
+                        sum_sqr_err = 0.0;
+                        index =ceil((double)ann.nodes_0/2.0);
+                        for(j=0; j<bits; j++)
+                                {
+                 for(k=0; k<ann.nodes_0; k++)
+                                        {
+                                        ann.layer_0[k].output = train_vect[index-k].value;
+                                        }
+                                ffwd_sig(ann.layer_0, ann.layer_1, ann.nodes_0+1, ann.nodes_1);
+                                ffwd_sig(ann.layer_1, ann.layer_2, ann.nodes_1+1, ann.nodes_2);
+                                ffwd_sig(ann.layer_2, ann.layer_3, ann.nodes_2+1, ann.nodes_3);
+                                error = train_vect[index].desired - ann.layer_3[0].output;
+                                sum_sqr_err += error*error;
+                                ann.layer_3[0].derivative = DER_SIGMOID(ann.layer_3[0].output) *
+error;
+                                derivatives(ann.layer_2, ann.layer_3, ann.nodes_2, ann.nodes_3);
+                                derivatives(ann.layer_1, ann.layer_2, ann.nodes_1, ann.nodes_2);
+                                update_weights_sf(ann.layer_2, ann.layer_3, ann.nodes_2+1,
+ann.nodes_3);
+                                update_weights_sf(ann.layer_1, ann.layer_2, ann.nodes_1+1,
+ann.nodes_2);
+                                update_weights_sf(ann.layer_0, ann.layer_1, ann.nodes_0+1,
+ann.nodes_1);
+                                index++;
+                                }
+                        #ifdef DEBUG
+            clrscr();
+                        gotoxy(1, 1);
+                        print_weights(ann.layer_1, ann.layer_0, ann.nodes_0+1, ann.nodes_1);
+                        print_weights(ann.layer_2, ann.layer_1, ann.nodes_1+1, ann.nodes_2);
+                        print_weights(ann.layer_3, ann.layer_2, ann.nodes_2+1, ann.nodes_3);
+                        printf("\n");
+                        while(!kbhit());
+                        getch();
+                        #endif
+                        errors[i] += sum_sqr_err/bits;
+                        update_weights_fi(ann.layer_3, ann.nodes_2+1, ann.nodes_3,
+ann.learn_rate, ann.momentum);
+                        update_weights_fi(ann.layer_2, ann.nodes_1+1, ann.nodes_2,
+ann.learn_rate, ann.momentum);
+                        update_weights_fi(ann.layer_1, ann.nodes_0+1, ann.nodes_1,
+ann.learn_rate, ann.momentum);
+                        }
+
+/* Now work out BER by testing over 10000 bits */

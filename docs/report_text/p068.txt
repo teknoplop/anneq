@@ -1,0 +1,75 @@
+Appendix B - Program listings
+
+/*
+     FILENAME:                EQ_FUNCS.H
+
+     DESCRIPTION:   Header file for EQ_FUNCS.C.
+
+     RESTRICTIONS:  None
+
+     VERSION:                 1    29/03/95    Original version.
+                              2    08/04/95    Remove biases from structures -
+just use one extra node in the layer above.
+*/
+
+/* Definitions */
+
+#ifndef M_PI
+#define M_PI           3.14159265358979323846 /* Define PI if not already defined */
+#endif
+
+#define SIG_A               1.0
+#define SIG_B               2.0
+
+
+#define SIGMOID(x)          SIG_A * tanh (SIG_B*x * 0.5)
+#define DER_SIGMOID(x) SIG_A * 0.5 * SIG_B * (1.0-x*x)
+#define LAYER1              0
+#define LAYER2              ann.nodes_1
+#define LAYER3              ann.nodes_1 + ann.nodes_2
+
+#define TOTAL_NODES         ann.nodes_1 + ann.nodes_2 + ann.nodes_3
+#define TOTAL_WEIGHTS   ann.nodes_0*ann.nodes_1 + ann.nodes_1*ann.nodes_2 +
+ann.nodes_2*ann.nodes_3
+
+#define NODES_START         ann.layer_1
+#define WEIGHTS_START  NODES_START->weights
+
+#define URAND               (double)rand()/RAND_MAX
+
+#define RAD_BASIS(x)   exp(-(x*x)/width)
+
+#define KRONECKER(x,y) (double)(x==y)
+
+/* Structures */
+
+typedef struct
+     {
+     double value;                      /* Value of signal on tap */
+     double weight;                     /* Value of weight */
+     } FIR_MODEL_STR;
+
+typedef struct
+     {
+     double sense;
+     double sum;
+     } SENSE_STR;
+
+typedef struct
+     {
+     double              weight;        /* Value of weight */
+     double              delta;         /* Last weight change value */
+     double              delta_sf;      /* The current sum during an epoch used
+in the weight change */
+     SENSE_STR      far  *sensitivity;  /* Pointer to Sensitivity vector for a RNN */
+     } WEIGHT_STR;
+
+typedef struct
+     {
+     WEIGHT_STR     far  *weights;      /* Pointer to array of weights from this
+node to all nodes in previous layer */
+     double              derivative;    /* Nodes error derivative */
+     double              output;        /* Output of the node */
+     double              counter;       /* Used to calculate the mean in a Radial
+basis node */
+     } NODE_STR;

@@ -1,0 +1,75 @@
+/*
+        FILENAME:               BPBC.C
+
+        DESCRIPTION:    Main program for Backprop equaliser simulator.
+
+        RESTRICTIONS:   None
+
+        VERSION:                1       29/03/95        Original version.
+                                        2       08/04/95        Remove biases from structures -
+just use one extra node in the layer above.
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <string.h>
+#include <ctype.h>
+#include <time.h>
+#include <math.h>
+#include "eq_funcs.h"
+#include "bpbc.h"
+
+void main(int no_pars, char *par_txt[])
+        {
+        FILE                    *output_file;   /* Pointer to the output file */
+        FILE                    *error_file;
+        double          error;
+        double                  ber = 0;                /* Holds the bit error rate */
+        double                  desired;                /* Desired output from equaliser during
+testing */
+        int                     no_errors;              /* Holds the number of errors occurred */
+        int                             test = 0;               /* Holds whether to find BER for
+equaliser */
+        int                     i, j,k;
+        int                             index;
+        int                             run_num;
+        double                  signal;
+        char                    filename[50];
+        time_t                  t;
+        double                  sum_sqr_err;
+
+/* Initialise data */
+
+        bp_init();
+
+/* Find out whether to test the BER of equaliser after training */
+
+        test = params(no_pars, par_txt);
+
+        #ifdef DEBUG
+        if (test)
+                {
+                printf("BER TESTING REQUESTED\n");
+                }
+        #endif
+
+/* Start simulations */
+
+        for (run_num=0; run_num<runs; run_num++)
+                {
+
+                #ifndef DEBUG
+                gotoxy(x, y);
+                printf("TRIAL:%03d",run_num+1);
+                #endif
+
+                srand((unsigned) time(&t));
+
+/* Reset delay lines and network weights */
+
+                for (i=0; i<m_taps; i++)
+                        {
+                        modelline[i].value = -1.0;
+                        }
+
+/* Set start bit */

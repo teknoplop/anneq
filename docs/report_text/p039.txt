@@ -1,0 +1,7 @@
+        save_doubles(&failiures, 1, runs, path, "FAIL.TXT");
+
+/* Clean up memory */
+
+        lms_tidyup();
+        exit(0);
+        }

@@ -1,0 +1,27 @@
+[Figure 5.5: Bit Error Rate plot for a 7 input ADALINE equaliser.]
+Log y-axis "BER" 1E-06 to 1E-01; x-axis "SNR (dB)" 5 to 20. Points (approx): 6 dB ~4E-02, 8 dB ~1.5E-02, 10 dB ~3.5E-03, 12 dB ~3E-04, 14 dB ~7E-06.
+
+5.6, classification fails because the two co-ordinate sets are not linearly separable.
+
+This problem is however easily solved by viewing the equaliser as a transfer function. In a noiseless channel:
+
+x(n) = d(n)H[z]
+
+To recover the desired signal, the equaliser must act as the channel inverse H^-1[z]:
+
+y(n) = x(n)H^-1[z]
+     = d(n)H[z]H^-1[z]
+     = d(n)
+
+Reference [17] describes how H^-1[z] can be expanded, using Laurent's series, to an infinite series, as follows
+
+H^-1[z] = a_0 z^b + a_1 z^(b-1) + a_2 z^(b-2) + a_3 z^(b-3) + ...
+
+where a_n is a constant coefficient and b is a positive or negative integer. If b is greater than zero knowledge of future symbols is required for the inverse function. This makes it non-causal and, of course, unrealisable. This problem is overcome by adding a delay of b symbol periods to a truncated inverse function, it now becomes
+
+H^-1[z] = z^-b ( a_0 z^b + a_1 z^(b-1) + a_2 z^(b-2) + ... + a_(I-1) z^(I-1) )
+
+Therefore,
+
+y(n) ≈ d(n)H[z]H^-1[z]
+     ≈ d(n)z^-b

@@ -1,0 +1,18 @@
+(LMS)[4] and Recursive Least Squares (RLS). These linear equalisers however have limitations and so non-linear techniques such as the Decision Feedback Equaliser (DFE)[5] were developed in the late 1960's. The mid 1980's saw a resurfaced interest in Artificial Neural Networks (ANNs)[a], and, amongst many other applications, these non-linear structures were applied to the field of adaptive equalisation[6]. Research has since investigated any benefits that different types of ANN may give over the more traditional forms of equaliser.
+
+1.4 Project aims
+
+The aim of this project is to perform a comparison of several types of ANN used as adaptive equalisers The project, over 30 weeks, was planned to follow the course shown below:
+
+  * Investigate the modelling of a channel that introduces ISI to a signal.
+  * Investigate various types of ANN.
+  * Apply the ANNs that appear appropriate to equalisation.
+  * Compare the performance of all equalisers in under realistic channel conditions and conclude any benefits that each type of ANN may posses.
+
+1.5 Simulation tools
+
+MATLAB version 4.0 is a very powerful, high level, mathematics language and allows efficient presentation of results. Although MATLAB proved too slow for the actual simulation programs (simulations running into tens of hours), all investigations were initially written using MATLAB and its neural network toolbox[7].
+
+To achieve a shorter simulation time the MATLAB programs were translated to C. These programs were first written as Dynamic Link Libraries (.DLL files) that linked to MATLAB. However these DLL's were found to be unstable in the windows operating system and took too long to debug. The simulations were finally compiled as stand alone DOS programs using Borland C/C++ v3.1. Data is transferred to and from these programs by means of a text files. All program listings are presented in appendix B.
+
+[a] Research into ANNs was largely put aside after Minsky and Papert published their book "Perceptrons" in 1968 showing the limitations of the ANN structures known at that time. These limitations were overcome with the introduction of Multi-Layer Perceptron (MLP) networks.

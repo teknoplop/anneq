@@ -1,0 +1,22 @@
+10. Conclusions
+
+The results, or lack of, presented in section 9 suggest that the RBF and backpropagation
+ANNs are not suitable for equalisation. This was drawn from the fact that the set of inputs co-
+ordinates were extremley close together and very difficult to separate for a practically sized
+network. A practically sized network being one that can compete with the already well
+established ADALINE equaliser in computation speed.
+
+The RNN equaliser showed that it was a useful equaliser, but its high sensitivity to starting
+parameters and instability made it second best to the ADALINE network. Reference [20] even
+suggests that RNNs are unsuitable for equalisation.
+
+Thus the three ANNs compared to the ADALINE network showed no advantage in using
+complex non-linear structures. However, this project only scratched the surface of the field of
+artificial neural networks and there were various structures not investigated, such as the
+Kohonen self-organising network!2"! and FIR MLPs.
+
+Due to the large amount of computing time (coding and simulations) required for these
+types of investigations, research ‘is was very slow, especially with the computer resources
+available. A more in depth investigation into the ANNs covered could yield some interesting
+reasons why the ANNs do not adapt well and give pointers to structures or algorithms that may
+improve the performance of neural networks in the field of adaptive equalisation.

@@ -1,0 +1,9 @@
+6.3 Batch mode training of MLPs
+
+If a set of input patterns is gathered together, the network can be trained repeatedly on this set. One epoch is defined as one presentation of the whole pattern set. If the mean local gradients of the network are computed over an epoch so that the weights are adjusted at the end of that epoch then a much smoother descent of the minimum error is obtained.
+
+This method is a very impractical of realising an equaliser, however it was an interesting investigation to attempt to train an MLP on noisy data such as that presented in figure 4.6. 40 random noisy samples were taken to make up the test set, and the ANN was trained over 1000 epochs. Reference [6] suggests a 2-6-4-1 MLP (2 inputs, 6 hidden nodes in the first hidden layer, 6 in the next, and 1 output).
+
+The initial observation during the simulation was the increased computational complexity of the network over the ADALINE equaliser. Each trial took at least ten times longer than an equivalent ADALINE trial, making it difficult to find available computing time to collect results.
+
+However the backpropagation network converged well in noisy conditions as the ensemble squared error plot in figure 6.2 shows for channel 1. The decision boundary made by the backpropagation equaliser is shown in figure 6.3(a) for channel 1 and figure 6.3(b) for channel 2. The boundary plots includes the optimum Bayesian boundaries for both channels. It can be seen that the boundaries differ from the optimum. In fact, every time the network is trained, the final decision boundary will be different depending on the initial value of the weights. Figure 6.4 shows the MLP's function surface. It is seen to be fairly complex and this is due to the many degrees of freedom within the network.

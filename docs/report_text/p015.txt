@@ -1,0 +1,19 @@
+Perceptron (MLP) feedforward network. In this case there is a layer of I input nodes, followed by one hidden layer containing J hidden nodes, then finally the output layer with K output nodes.
+
+The threshold function of the perceptrons is simulated by using an extra node input. This input is connected to a bias node added to the previous layer. The bias node's output is fixed at -1. This makes coding the ANN much simpler. For example, the weight connecting node k to the bias node J in the layer above represents the threshold value for node k, that is:
+
+    w_Jk = \theta_k                                              (4-3)
+
+When a set of inputs is applied to the network the signals are fed forward through the network by calculating the output of each node, layer by layer, until the outputs of the ANN are known. Combining equations (4-1), (4-2) and (4-3), the output of node j, y_j(n), can be calculated from the outputs of the nodes in the previous layer (y_i(n), 0<=i<=I):
+
+    y_j(n) = \varphi[ \sum_{i=0}^{I} y_i(n) w_ij(n) ]            (4-4)
+
+where I is the number of nodes in the previous layer, including the bias node.
+
+4.3 Training feedforward ANNs
+
+The ANN is initialised by setting the weight values to small uniformly distributed random numbers. Then the ANN is trained by adjusting its weights to reduce the error of the output. There are two methods of training an ANN:
+
+  1. Supervised training is used when the desired output of the ANN is known for each set of inputs. The difference between the desired output and the actual ANN output can be used to update the weights in the network to reduce this error.
+
+[Figure 4.4: General layout of a feedforward MLP network with bias nodes. Network inputs feed input Nodes 0, 1, 2, ..., I-1, plus bias Node I fixed at -1.0; weights w_ij connect them to hidden Nodes 0, 1, ..., J-1, plus bias Node J fixed at -1.0; weights w_jk connect these to output Nodes 0, ..., K-1, giving the network outputs.]

@@ -1,0 +1,46 @@
+     FUNCTION PROTOTYPE:           void save_doubles(double far *list, int length, double
+div, char path[], char *name
+
+     DESCRIPTION:                  Saves an array of doubles to disk, first dividing by
+div.
+*/
+
+void save_doubles(double far *list, int length, double div, char path[], char *name)
+     {
+   FILE      *output_file;
+     char    filename[100];
+     int     i;
+
+     sprintf(filename, "%s%s", path, name);
+     if ((output_file = fopen(filename, "wt")) == NULL)
+          {
+          printf("File %s cannot be created", name);
+          exit(1);
+          }
+     for (i=0; i<length; i++)
+          {
+          fprintf(output_file,"%+2.7lf\n", list[i]/div);
+          }
+     fclose(output_file);
+     }
+
+/*
+     FUNCTION PROTOTYPE:           void fill_rand(NODE_STR far *layer_2, int nodes_1, int
+nodes_2)
+
+     DESCRIPTION:                  Fills weights between layer 1 and layer2 with small
+random numbers
+*/
+
+void fill_rand(NODE_STR far *layer_2, int nodes_1, int nodes_2)
+     {
+     int i,j;
+
+     for(i=0; i<nodes_2; i++)
+          {
+          for(j=0; j<nodes_1; j++)
+               {
+               layer_2[i].weights[j].weight = URAND*0.1;
+               }
+          }
+    }

@@ -1,0 +1,4 @@
+equaliser performs extremely well. The length of the training preamble can be short due to the nature of the averaging function of the training procedure.
+
+[Figure 8.3: BER performance of RBF equaliser.]
+Log y-axis "log10 (BER)" 1E-05 to 1E+00; x-axis "SNR (dB)" ticks 6, 8, ..., 24, 30. Legend: CHANNEL 1 (diamond), CHANNEL 2 (circle). Two nearly identical curves, channel 2 slightly higher. Approx: 6 dB ch1 1.15E-01 / ch2 1.35E-01; 8 dB 8E-02 / 9.5E-02; 10 dB 4.5E-02 / 5.5E-02; 12 dB 2.2E-02 / 2.7E-02; 14 dB 8.5E-03 / 1.1E-02; 16 dB 2.2E-03 / 3E-03; 18 dB both ~3.8E-04; 20 dB both ~4E-05.

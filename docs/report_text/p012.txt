@@ -1,0 +1,21 @@
+3.4 Equaliser testing and comparison
+
+Whilst a type of equaliser is being investigated it is trained using two channels. Channel one is:
+
+    H[z] = 1.0 + 0.5z^-1
+
+and channel 2 is:
+
+    H[z] = 0.5 + 1.0z^-1
+
+All the equalisers are tested on a real life channel when compared with each. The coefficients of this model are listed in table 3.1. Section 9 deals with how the equalisers compare with this channel model.
+
+Table 3.1 - Coefficients of real life channel model.
+
+| Order of delay | Co-efficient | Order of delay | Co-efficient |
+|----------------|--------------|----------------|--------------|
+| z^0            | 0.047309     | z^-5           | 0.100099     |
+| z^-1           | 0.320619     | z^-6           | 0.040872     |
+| z^-2           | 0.782586     | z^-7           | 0.037772     |
+| z^-3           | 0.426974     | z^-8           | 0.020498     |
+| z^-4           | 0.293453     | z^-9           | 0.010807     |

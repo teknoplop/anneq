@@ -1,0 +1,20 @@
+8. Radial-basis function equaliser [14][19]
+
+8.1 Radial-basis function node
+
+The Radial-Basis Function (RBF) network uses a different type of node to the standard perceptron. The RBF node shown in figure 8.1 has I inputs, x_i, and for each input the node stores a co-ordinate value, w_i. The node calculates the Euclidean distance in co-ordinate space between the input value and the co-ordinate stored for that input. The sum of the distances is passed through a Gaussian distribution function so that the node fires when the total distance tends to zero. The function of the RBF node can be described as:
+
+y_j = φ[ Σ_{i=0}^{I} ||x_i - w_i|| ]        (8.1)
+
+where the activation function is:
+
+φ[v(n)] = exp[ -(v(n))^2 / (2 σ_w^2) ]        (8.2)
+
+σ_w represents the width of the Gaussian function. Equations (8.1) and (8.2) imply that the RBF node will fire if the co-ordinates presented to the node are close to the co-ordinate stored.
+
+8.2 RBF networks in equalisation
+
+For an RBF network to equalise channel 1, figure 5.2 shows that eight co-ordinates can be presented to a two input equaliser. In the RBF equaliser there is one node given to each possible co-ordinate. Figure 8.2 shows such a structure. For each received pattern one of the eight nodes will fire. All the outputs to the RBF layer are fed to an ADALINE node. The bias of the ADALINE
+
+[Figure 8.1: Radial-basis function node.]
+Diagram: input pairs (w_0, x_0), (w_1, x_1), (w_2, x_2), ..., (w_i, x_i) each feed a distance function block ||.||; outputs go to a summing unit (Σ), then a Gaussian function block, giving output y_j.

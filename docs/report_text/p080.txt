@@ -1,0 +1,37 @@
+     if ((error_run = (double  far *)calloc(bits, sizeof(double))) == NULL)
+          {
+          printf("Calloc failiure on errors\n");
+          exit(1);
+          }
+
+/* Allocate memory for desired signal delay line */
+
+     if ((delayline = (FIR_MODEL_STR far *)calloc(delay+1, sizeof(FIR_MODEL_STR))) == NULL)
+          {
+          printf("Calloc failiure on delayline");
+          exit(1);
+          }
+
+     }
+
+void lms_tidyup(void)
+     {
+
+/* Free all allocated memory */
+
+
+     free((void *)ann.layer_1[0].weights);
+     free((void *)modelline);
+     free((void *)delayline);
+     free((void *)errors);
+     free((void *)ann.layer_0);
+   free((void *)ann.layer_1);
+
+/* Restore screen */
+
+     textcolor(WHITE);
+     textbackground(BLACK);
+   lowvideo();
+     _setcursortype(_NORMALCURSOR);
+   printf("\n\n");
+     }

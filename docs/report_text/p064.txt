@@ -1,0 +1,45 @@
+/* Reset delay lines */
+
+               for(i=0; i<10000; i++)
+                    {
+
+/* Add next preamble bit into channel model */
+
+                    modelline[0].value = sign((2.0*URAND)-1.0);
+
+/* Calculate signal and add to equalilzer shift register */
+
+                    ann.layer_0[0].output = fir_output(modelline, m_taps) +
+noise(snr);
+
+
+/* Calculate output of equalizer and then work out its error */
+
+          dist(ann.layer_0, ann.layer_1, ann.nodes_0, ann.nodes_1, ann.learn_rate);
+                    ffwd_ada(ann.layer_1, ann.layer_2, ann.nodes_1, ann.nodes_2);
+
+                    if (sign(ann.layer_2[0].output) != modelline[0].value)
+                         {
+                         no_errors++;
+                         }
+
+/* Shift channel model and equalizer shift registers one place to the right */
+
+                    shift_right_layer(ann.layer_0, ann.nodes_0);
+                    shift_right_fir(modelline, m_taps);
+                    }
+               gotoxy(x-25, y);
+               printf("LAST BER:%05d", no_errors);
+               ber += (double)no_errors/10000.0;
+               }
+          }
+
+/* Store mean bit error rate in a text file */
+
+     save_doubles(&ber, 1, runs, path, "BER.TXT");
+
+/* Clean up memory */
+
+     rb_tidyup();
+     exit(0);
+     }

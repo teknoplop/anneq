@@ -1,0 +1,75 @@
+void prbs(double far *sequence, int length)
+     {
+     int     count;                /* Counter for a FOR loop */
+
+     for(count=0; count<length; count++)
+          {
+          if (URAND > 0.5)
+               {
+               sequence[count]=1.0;
+               }
+          else
+               {
+               sequence[count]=-1.0;
+               }
+          }
+     }
+
+/*
+     FUNCTION PROTOTYPE:           double fir_output(FIR_MODEL_STR far *filter, int
+fir_length)
+
+     DESCRIPTION:                  Sums the product of each value held in the FIR structure
+at filter, with its
+                                             respective weight. The number of taps in
+the filter is given by the input
+                                             parameter fir_length.
+*/
+
+double fir_output(FIR_MODEL_STR far *filter, int fir_length)
+     {
+     int i;                        /* Counter for a FOR loop */
+     double prod = 0.0;      /* Holds the current sum of products */
+
+     for(i=0; i<fir_length; i++)
+          {
+          prod += filter[i].value * filter[i].weight;
+          }
+     return prod;
+     }
+
+/*
+     FUNCTION PROTOTYPE:           void shift_right_fir(FIR_MODEL_STR far *filter, int
+fir_length)
+
+     DESCRIPTION:                  Shifts the values on the delay line of the FIR filter
+structure at filter along to the
+                                             right one place. The length of the FIR
+filter is given by fir_length.
+*/
+
+void shift_right_fir(FIR_MODEL_STR far *filter, int fir_length)
+     {
+     int i;
+
+     for(i=(fir_length-1); i>0; i--)
+          {
+          filter[i].value = filter[i-1].value;
+          }
+     }
+
+/*
+     FUNCTION PROTOTYPE:           int sign(double value)
+
+     DESCRIPTION:                  Returns the sign (+1 or -1) of the input parameter
+value.
+*/
+
+int sign(double value)
+     {
+     int result = 1;
+
+     if (value <0.0)
+          {
+          result = -1;
+          }

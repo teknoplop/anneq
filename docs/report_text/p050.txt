@@ -1,0 +1,75 @@
+        #else
+                textmode(C4350);
+        clrscr();
+        printf("Initializing BP equalizer simulator - debugging mode\n");
+        printf("Opening BP constants file\n");
+        #endif
+
+
+        if ((consts_file = fopen("e:\\temp\\bp_const.txt", "rt")) != NULL)
+                {
+                fscanf(consts_file, "%d%d%d%lf%d%d%d%d%lf%lf", &m_taps, &bits, &epochs, &snr,
+&runs, &ann.nodes_0, &ann.nodes_1, &ann.nodes_2,
+                                                                                &ann.learn_rate,
+&ann.momentum);
+                fclose(consts_file);
+                }
+        else
+                {
+                printf("File consts.txt not found\n");
+                exit(1);
+                }
+
+        ann.nodes_3 = 1;
+
+        #ifdef DEBUG
+        printf("No of inputs:%02d\n",ann.nodes_0);
+        printf("No of layer 1 nodes:%02d\n",ann.nodes_1);
+        printf("No of layer 2 nodes:%02d\n",ann.nodes_2);
+        printf("No of layer 3 nodes:%02d\n",ann.nodes_3);
+        printf("Learn Rate:%+01.5lf\n",ann.learn_rate);
+        printf("Momentum:%+01.5lf\n",ann.momentum);
+        printf("No of preamble bits:%d\n", bits);
+        printf("No of trials:%d\n", runs);
+        printf("Signal to noise ratio:%lf dBs\n",snr);
+        printf("Allocating memory for model FIR structure: %d * FIR_MODEL_STR\n", m_taps);
+        #endif
+
+        if ((modelline = (FIR_MODEL_STR far *)calloc(m_taps, sizeof(FIR_MODEL_STR))) == NULL)
+                {
+                printf("Calloc failiure on modelline");
+                exit(1);
+                }
+
+        #ifdef DEBUG
+        printf("Opening channel model weights file\nModel weights:");
+        #endif
+
+        if ((weights_file = fopen("e:\\temp\\weights.txt", "rt")) != NULL)
+                {
+                for(i=0; i<m_taps; i++)
+                        {
+                        fscanf(weights_file, "%lf\n", &modelline[i].weight);
+                        #ifdef DEBUG
+                        printf("%lf\t",modelline[i].weight);
+                        #endif
+                        }
+                #ifdef DEBUG
+                printf("\n");
+                #endif
+                fclose(weights_file);
+                }
+        else
+                {
+                printf("File weights.txt not found");
+                exit(1);
+                }
+
+        #ifdef DEBUG
+        printf("Allocating memory for input nodes: %d * bytes\n", (ann.nodes_0+1) *
+sizeof(NODE_STR));
+        #endif
+
+        if ((ann.layer_0 = (NODE_STR  far *)calloc(ann.nodes_0+1, sizeof(NODE_STR))) == NULL)
+                {
+                printf("Calloc failiure on input nodes\n");

@@ -1,0 +1,41 @@
+                }
+
+        for(i=i;i<ann.nodes_1;i++)
+                {
+                ann.layer_2[0].weights[i].weight = 1.0;
+                }
+
+        memory = (int)(log10(ann.nodes_1)/log10(2));
+
+        if ((delayline = (FIR_MODEL_STR far *)calloc(memory, sizeof(FIR_MODEL_STR))) == NULL)
+                {
+                printf("Calloc failiure on delayline");
+                exit(1);
+                }
+        }
+
+void rb_tidyup(void)
+        {
+        int i,j;
+
+/* Free all allocated memory */
+
+        for (i=0; i<ann.nodes_1; i++)
+                {
+                free((void *)ann.layer_1[i].weights);
+                }
+        free((void *)ann.layer_2[0].weights);
+        free((void *)modelline);
+        free((void *)delayline);
+        free((void *)ann.layer_0);
+    free((void *)ann.layer_1);
+    free((void *)ann.layer_2);
+
+/* Restore screen */
+
+        textcolor(WHITE);
+        textbackground(BLACK);
+    lowvideo();
+        _setcursortype(_NORMALCURSOR);
+    printf("\n\n");
+        }

@@ -1,0 +1,17 @@
+[Figure 3.2: 5 bit pseudo-random sequence generator. A 5 bit shift register (Bit 1 -> Bit 2 -> Bit 3 -> Bit 4 -> Bit 5); the outputs of Bit 2 and Bit 5 are XORed and fed back to the input of Bit 1. Bit 5 drives a Symbol selector switch choosing +1.0 (for 1) or -1.0 (for 0) as the OUTPUT.]
+
+3.2 Equaliser test procedure[10]
+
+The equalisers investigated in this project are all tested in the same way and compared under similar conditions. Initially a training sequence of 1,000 bits is transmitted and the square of the error signal, e(n) is recorded. Following training, the 10,000 test sequence bits discussed in section 3.1 are transmitted and the BER is calculated.
+
+This two part test is performed 100 times. The square error signal is averaged to remove the noise components and results in the ensemble squared error signal. The mean of the BER is also recorded.
+
+Occasionally an ANN will not train and this will effect the mean results. Included in the simulations is a test to check if the ANN completes training successfully. If this test is failed, then the ANN is reset and trained again.
+
+3.3 Generation of the training sequence
+
+Both states of the bits generated in training data should have an equal probability of occurring. The sequence should also be known by the equaliser. A convenient solution to these restrictions on the training sequence is the Pseudo-random Noise (PN) generator. The generator is based on a shift register, an example is shown in figure 3.2, based on a 5-bit shift register. Bit numbers 2 and 5 are XORed and fed back to bit 0.
+
+If the shift register is primed with all 1's then a repetitive sequence of 1's and 0's is produced. Because of the logical structure of the generator the sequence will always be the same. Therefore, one PN generator can be used to generate a training sequence at the transmitter, and another at the receiver can be synchronised to produce the desired signal.
+
+The 5 bit generator's sequence has a period of 31 bits. This length should give enough training patterns within the whole preamble length without having too many sequential 1's or 0's. Before the PN sequence is transmitted, all 0's are converted to -1's to give the sequence an approximate mean about zero.

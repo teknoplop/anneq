@@ -1,0 +1,18 @@
+7. Recurrent neural network equaliser
+
+7.1 Recurrent network structure
+
+The Recurrent Neural Network structure is based on the standard MLP structure, with the addition of the outputs being fed-back to the inputs via a unit delay. Figure 7.1 shows an example RNN with two inputs. Although there are three output nodes, only one is used as an output to the "outside world". All three output nodes are connected to unit delays and then on to three input nodes to complete the feedback cycle. The input signals are fed through the network as described in section 4.2.
+
+7.2 RNN training algorithm
+
+One algorithm for training RNNs is the Real-Time Recurrent Learning (RTRL) algorithm. Again this is a gradient descent algorithm that uses an estimate of the slope error signal in weight space. Due to the structure of the network, the RTRL algorithm is more complex than backpropagation. For each weight a set of sensitivity values must be computed:
+
+π_ij^k(n) = ∂y_k / ∂w_ij
+
+i.e. the differential of the output of node k, y_k, with respect to weight w_ij. References [14][18] derive this as:
+
+π_ij^k(n) = φ'[v_k(n)] [ Σ_{l=0}^{K} w_ij(n) π_ij^k(n-1) + δ_ik u_j(n) ]        (7.1)
+
+[Figure 7.1: A recurrent neural network used as an adaptive equaliser.]
+Diagram: "Recieved Signal" x(n) feeds a tapped delay line of Z^-1 elements (x(n) ... x(n-(M-1))) into input nodes; a bias input node fixed at -1; feedback input nodes y_0(n-1), y_1(n-1), ..., y_(J-1)(n-1). All input nodes fully connected to output nodes producing y_0(n), y_1(n), ..., y_(J-1)(n). Each output passes through a Z^-1 unit delay back to its feedback input node. y_0(n) is the "Equaliser Output y(n)".

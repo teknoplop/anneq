@@ -1,0 +1,9 @@
+[Figure 5.6: Optimum Bayesian boundary for channel 2.]
+Axes x(n) and x(n-1) both -3 to 3 (unlabelled). x points (class -1) at (-1.5,0.5), (-1.5,-1.5), (0.5,1.5), (0.5,-0.5); filled-circle points (class +1) at (-0.5,0.5), (-0.5,-1.5), (1.5,1.5), (1.5,-0.5). Boundary: vertical line at x=-1 from bottom up to y~1.9, diagonal down-right to (0.4,0.5), back down-left to (-0.4,-0.5), down-right to (1,-1.8), then vertical line at x=1 up to the top. Not linearly separable.
+
+If the weights in an ADALINE equaliser are used to represent the coefficients, a_0 to a_(I-1), of H^-1[z], then the network can be trained using the desired response delayed by b symbol periods.
+
+An ADALINE equaliser with 7 inputs and learning rate of 0.01 was tested on the channel 2 with the desired signal delayed by 7 bits. The BER results are shown in figure 5.7 and show that the ADALINE equaliser is equally as effective on this channel as it was with the previous one.
+
+[Figure 5.7: Bit Error Rate plot for a 7 input ADALINE equaliser.]
+Log y-axis "BER" 1E-06 to 1E-01; x-axis "SNR (dB)" 5 to 20. Points (approx): 6 dB ~4E-02, 8 dB ~1.6E-02, 10 dB ~3.5E-03, 12 dB ~3E-04, 14 dB ~7E-06.

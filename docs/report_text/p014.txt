@@ -1,0 +1,11 @@
+[Figure 4.2: Simple diagram of a biological neuron. Several input branches (DENDRITES) converge on the Neuron Body, from which a single Output (AXON) leaves.]
+
+respective weights, w_0j(n) to w_(I-1)j(n). These products are summed by the summing unit and this total, v_j(n), is passed through the activation function, \varphi_j[.]. The output of the node, y_j(n), only "fires" if the input to \varphi_j[.] exceeds a certain threshold value, \theta_j. This action is described in equation form as:
+
+    y_j(n) = \varphi_j[v_j(n) - \theta_j]                        (4-1)
+
+    v_j(n) = \sum_{i=0}^{I} w_ij x_i                             (4-2)
+
+Figure 4.4 shows how these perceptron nodes are put together to form a Multi-Layer
+
+[Figure 4.3: Perceptron model of a neuron. INPUTS x_1, x_2, x_3, ..., x_(I-1) pass through adjustable WEIGHTS w_1j, w_2j, w_3j, ..., w_(I-1)j into a SUMMING UNIT (Sigma) giving v_j, which passes through the ACTIVATION FUNCTION \varphi[.] (a saturating ramp), offset by THRESHOLD \theta_j, to give OUTPUT y_j.]

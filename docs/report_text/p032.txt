@@ -1,0 +1,14 @@
+[Figure 8.2: RBF network used as an adaptive equaliser.]
+Diagram: "Recieved Signal" x(n) feeds a delay line of Z^-1 elements giving x(n-1), x(n-2), ..., x(n-(M-1)); each tap feeds an input node; all input nodes fully connected to a layer of Gaussian (RBF) nodes; RBF outputs connect to a single ADALINE node with weights -1, -1, +1, +1; ADALINE gives "Equaliser Output y(n)".
+
+node is always zero so the bias node can be ignored.
+
+The RBF network must classify the co-ordinates represented by × as -1.0 and ● as +1.0. Therefore, the weights connected to the RBF nodes designated to detect × co-ordinates are set to -1.0. The weights connected to the ● are set to +1.0. Only one node should fire at a time, so the network output will be close to +1.0 or -1.0.
+
+The RBF network is trained by updating the co-ordinates, or centres, that the RBF nodes store. By using the past record of desired signal data, it can be calculated which node should be firing. The co-ordinates on the inputs to the network are then used to provide a mean centre for that node. This averaging process, after time, will cancel out the effect of the Gaussian noise. After training each node will have its centre on its designated co-ordinate.
+
+8.3 RBF equaliser simulation
+
+Due to the nature of the training, there is no error signal recorded for the RBF equaliser and only the BER test can be performed. Also, because the RBF network does not require any signal to be fed through the network during training only the averaging process is performed. This makes the computational complexity during training low. When training ends, data is fed through the network and the number of distance functions that are performed does make the network slower and restricts the maximum transmission speed.
+
+Figure 8.3 shows the BERs for channels 1 and 2 over a range of SNRs. For all test the Gaussian function width was set to 0.125. It can be seen that for channels 1 and 2 the RBF

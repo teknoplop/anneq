@@ -1,0 +1,75 @@
+                                {
+                                modelline[i].value = -1.0;
+                                }
+
+                        for(k=0; k<ann.nodes_1; k++)
+                                {
+                                for(l=0; l<ann.nodes_0+ann.nodes_1+1; l++)
+                                        {
+                                        for(j=0; j<ann.nodes_1; j++)
+                                                {
+                                                ann.layer_1[k].weights[l].sensitivity[j].sense =
+0.0;
+                                                }
+                                        }
+                                }
+
+/* Initialise the network */
+
+                        fill_rand(ann.layer_1, ann.nodes_0+ann.nodes_1+1, ann.nodes_1);
+
+/* Set bias node */
+
+                        ann.layer_0[ann.nodes_0].output = -1.0;
+
+/* Set start bit */
+
+                        signal = 1.0;
+
+/* Remember how long to delay the desired response */
+
+                        delay_count = delay;
+
+                        gotoxy(x-10, y);
+                        printf("TRAINING ");
+                        mean_err = 0.0;
+
+                        for (bit_no = 0; bit_no<bits; bit_no++)
+                                {
+
+        /* Add next preamble bit into channel model */
+
+                                delayline[0].value = modelline[0].value = signal;
+
+        /* Calculate signal and add to equaliser shift register */
+
+                                ann.layer_0[0].output = fir_output(modelline, m_taps) +
+noise(snr);
+
+        /* Only start equalisation if desired response has been delayed enough */
+
+                                if (delay_count == 0)
+                                        {
+        /* Copy delayed outputs to inputs */
+
+                                        for(j=0; j<ann.nodes_1; j++)
+                                                {
+                                                ann.layer_0[ann.nodes_0+1+j].output =
+ann.layer_1[j].output;
+                                                }
+
+        /* Feed inputs through net */
+
+                                        ffwd_sig(ann.layer_0, ann.layer_1, ann.nodes_0+1,
+ann.nodes_1);
+
+        /* Calculate error and store square error */
+
+                                        error = delayline[delay].value - ann.layer_1[0].output;
+                                        error_run[bit_no-delay] = error*error;
+                                        if(bit_no>=bits-400)
+                                                {
+                                                mean_err += error*error;
+                                                }
+
+        /* Calculate sensitivities */

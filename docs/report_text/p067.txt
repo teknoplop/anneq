@@ -1,0 +1,18 @@
+Plotting J against the weight values constitutes the error surface for the ADALINE. The surface is a smooth bowl shape with a minimum J_min. The downwards direction of the gradient points towards J_min:
+
+nabla_{w_j} J = dJ/dw_j = -r_dx(j) + sum_{i=0}^{I-1} w_i r_x(i,j)
+
+Using the gradient descent algorithm, the change to weight i at iteration n is defined as
+
+Delta w_i(n) = -eta nabla_{w_i} J(n)
+
+The LMS algorithm uses instaneous estimates for r_x(i,j;n) and r_xd(i):
+
+r_x(i,j;n) = x_i(n) x_j(n)
+r_dx(i;n) = x_i(n) d(n)
+
+Thus,
+
+w_i(n+1) = w_i(n) + eta [ x_i(n) d(n) - sum_j^{I-1} w_j(n) x_i(n) x_j(n) ]
+         = w_i(n) + eta [ d(n) - sum_j^{I-1} w_j(n) x_j(n) ] x_i(n)
+         = w_i(n) + eta [ d(n) - y(n) ] x_i(n),          i = 0,1,2,...,(I - 1)

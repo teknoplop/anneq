@@ -1,0 +1,11 @@
+[Figure 5.3: Error signals for ADALINE equaliser when varying the number of inputs.]
+Log y-axis "Ensemble Square Error" 0.001 to 10; x-axis "Preamble Bit number" 0 to 1000. Legend: 1 tap, 2 taps, 3 taps, 7 taps, 11 taps. All curves start near 1 at bit 0. 1 tap (red) settles by ~bit 80 at ~0.2; 2 taps (green) settles by ~bit 150 at ~0.07; 3 taps (blue) settles ~0.025; 7 taps and 11 taps (red/black, overlapping) settle by ~bit 200 at ~0.015, noisy with dips to ~0.007.
+
+Using the optimal set up of 7 inputs and a learning rate of 0.01, the ADALINE equaliser was tested over a range of SNRs. The resulting BERs are plotted against the SNRs in figure 5.5, and show a very acceptable performance in noisy conditions.
+
+5.4 Problems with a linear equaliser
+
+The decision boundary shown in figure 5.2 could be re-drawn as a straight line separating the two sets of co-ordinates. This implies that the co-ordinates are linearly separable. The ADALINE equaliser classifies the two sets of co-ordinates with a straight line boundary due to its linear structure. If the ADALINE equaliser is presented with a co-ordinate set shown in figure
+
+[Figure 5.4: Error signals for ADALINE equaliser when varying the LMS learning rate.]
+Log y-axis "Ensemble Square Error" 0.001 to 10; x-axis "Preamble Bit Number" 0 to 1000. Legend: 0.1, 0.01, 0.001, 0.0001. Rate 0.1 (black): unstable/noisy around 1-2 throughout, peaks ~3. Rate 0.01 (green): falls from ~1 to ~0.015 by bit ~250, then flat ~0.012 with noise. Rate 0.001 (blue): slow near-linear (log) decline from ~1 to ~0.08 at bit 1000. Rate 0.0001 (red): almost flat, ~1.0 falling to ~0.8 at bit 1000.

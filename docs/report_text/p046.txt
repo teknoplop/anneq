@@ -1,0 +1,76 @@
+                                        for(k=0; k<ann.nodes_1; k++)
+                                                {
+                                                for(l=0; l<ann.nodes_0+ann.nodes_1+1; l++)
+                                                        {
+                                                        for(j=0; j<ann.nodes_1; j++)
+                                                                {
+
+        ann.layer_1[k].weights[l].sensitivity[j].sum = 0.0;
+                                                                for(i=ann.nodes_0+1;
+i<ann.nodes_0+1+ann.nodes_1; i++)
+                                                                        {
+
+        ann.layer_1[k].weights[l].sensitivity[j].sum += (ann.layer_1[j].weights[i].weight *
+ann.layer_1[k].weights[l].sensitivity[i-ann.nodes_0-1].sense +
+KRONECKER(k,j)*ann.layer_0[l].output);
+                                                                        }
+                                                                }
+                                                        }
+                                                }
+
+                                        for(k=0; k<ann.nodes_1; k++)
+                                                {
+                                                for(l=0; l<ann.nodes_0+ann.nodes_1+1; l++)
+                                                        {
+                                                        for(j=0; j<ann.nodes_1; j++)
+                                                                {
+
+        ann.layer_1[k].weights[l].sensitivity[j].sense = DER_SIGMOID(ann.layer_1[j].output) *
+(ann.layer_1[k].weights[l].sensitivity[j].sum);
+                                                                }
+                                                        }
+                                                }
+
+        /* Update weights */
+
+                                        for(k=0; k<ann.nodes_1; k++)
+                                                {
+                                                for(l=0; l<ann.nodes_1+ann.nodes_0+1; l++)
+                                                        {
+                                                        ann.layer_1[k].weights[l].weight +=
+ann.learn_rate * error * ann.layer_1[k].weights[l].sensitivity[0].sense;
+                                                        }
+                                                }
+                                }
+                                        else
+                                        {
+
+        /* Equalization has not begun so decrease delay counter */
+
+                                        delay_count--;
+                                        }
+
+        /* Shift channel model and equalizer shift registers one place to the right */
+
+                    signal = next_pn(pn_shift);
+                                shift_right_layer(ann.layer_0, ann.nodes_0);
+                                shift_right_fir(modelline, m_taps);
+                                shift_right_fir(delayline, delay+1);
+                                }
+                        if ((mean_err/400) < 0.6)
+                                {
+                                fail = 0;
+                                gotoxy(x - 4, y+1);
+                                printf("%1.3lf PASSED", mean_err/400);
+                                }
+                        else
+                                {
+                                gotoxy(x-4, y+1);
+                                printf("%1.3lf FAILED", mean_err/400);
+//                              putch((char)7);
+                failiures++;
+                                }
+                        }
+
+                for(i=0; i<bits-delay; i++)
+                        {

@@ -1,0 +1,62 @@
+                                printf("Calloc failiure on nodes\n");
+                                exit(1);
+                                }
+                        }
+                }
+
+/* Allocate memory for square error record */
+
+        if ((errors = (double  far *)calloc(bits, sizeof(double))) == NULL)
+                {
+                printf("Calloc failiure on errors\n");
+                exit(1);
+                }
+
+/* Allocate memory for square error */
+
+        if ((error_run = (double  far *)calloc(bits, sizeof(double))) == NULL)
+                {
+                printf("Calloc failiure on errors\n");
+                exit(1);
+                }
+
+/* Allocate memory for desired signal delay line */
+
+        if ((delayline = (FIR_MODEL_STR far *)calloc(delay+1, sizeof(FIR_MODEL_STR))) == NULL)
+                {
+                printf("Calloc failiure on delayline");
+                exit(1);
+                }
+        }
+
+void rnn_tidyup(void)
+        {
+        int i,j;                /* Counters in FOR loops */
+
+/* Free all allocated memory */
+
+
+        for (i=0; i<ann.nodes_1; i++)
+                {
+                for(j=0; j<ann.nodes_0+ann.nodes_1; j++)
+                        {
+                        free((void *)ann.layer_1[i].weights[j].sensitivity);
+                        }
+                free((void *)ann.layer_1[i].weights);
+                }
+
+        free((void *)modelline);
+        free((void *)delayline);
+        free((void *)errors);
+        free((void *)error_run);
+        free((void *)ann.layer_0);
+    free((void *)ann.layer_1);
+
+/* Restore screen */
+
+        textcolor(WHITE);
+        textbackground(BLACK);
+    lowvideo();
+        _setcursortype(_NORMALCURSOR);
+    printf("\n\n");
+        }

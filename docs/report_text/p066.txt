@@ -1,0 +1,36 @@
+Appendix A - LMS Derivation[14][22][23][24]
+
+For an ADALINE adaptive equaliser, the error of the output can be calculated by
+
+e = d - y                                                        (A1)
+
+where d is the desired signal and y is the ADALINE output. If the ADALINE has I inputs and I corresponing weights represented by x_i and w_i respectively, the output of the ADALINE is written as
+
+y = sum_{i=0}^{I-1} w_i x_i                                      (A2)
+
+The performance of the ADALINE is measured by the cost function, J,
+
+J = (1/2) E[e^2]                                                 (A3)
+
+where E[·] is the expectation operator. Combining equations (A1), (A2) and (A3) and using a double summation to represent a squared term gives
+
+J = (1/2) E[d^2] - E[ sum_{i=0}^{I-1} w_i x_i d ] + (1/2) E[ sum_{i=0}^{I-1} sum_{j=0}^{I-1} w_i w_j x_i x_j ]
+  = (1/2) E[d^2] - sum_{i=0}^{I-1} w_i E[x_i d] + (1/2) sum_{i=0}^{I-1} sum_{j=0}^{I-1} w_i w_j E[x_i x_j]
+
+Define
+
+• The mean-square value of the desired response as
+
+  r_d = E[d^2]
+
+• The cross-correlation fucntion between the desired response and the input as
+
+  r_dx(i) = E[d x_i]
+
+• The autocorrelation of the inputs as
+
+  r_x(i,j) = E[x_i x_j]
+
+Therefore:
+
+J = (1/2) r_d - sum_{i=0}^{I-1} w_i r_dx(i) + (1/2) sum_{i=0}^{I-1} sum_{j=0}^{I-1} w_i w_j r_x(i,j)     (A4)

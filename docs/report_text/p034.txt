@@ -1,0 +1,14 @@
+9. Assessment of ANN equaliser techniques
+
+Figure 9.1 shows the impulse response of a real life channel model, given by reference [???] (handwritten correction: 9), that represents a typical telephone line in the British network. All four equalisers were tested on this channel model without noise so that the optimum network parameters could be found. Then they would be tested with these parameters over a range of SNRs.
+
+No optimum parameters could be found for the backpropagation equaliser, whilst keeping the network realistic size, and therefore it was not tested on the real life channel model. The RBF equaliser would also not train on the real life channel model with an acceptable sized structure.
+
+The 10 tap channel model produces 2048 co-ordinate points in two dimensional space, all practically on top of one another. A network would have to contain an extremely large number of nodes to classify this number of points. A large network results in very high computational complexity and stops the network being any practical use as an equaliser.
+
+However both the ADALINE and RNN equalisers did adapt successfully. The LMS equaliser was set-up up with 15 inputs, a learning rate of 0.08 and a delay of 5 bits. The RNN equaliser had 10 inputs, 4 output nodes and a learning rate of 0.003.
+
+Figure 9.2 shows that the convergence of the ADALINE and RNN equalisers are very similar with the RNN achieving a slighter smaller final error. Figure 9.3 shows that the ADALINE network outperformed the RNN equaliser for BERs.
+
+[Figure 9.1: Impulse response of a real life channel]
+Bar chart; y-axis "Received Signal Strength" 0 to 1; x-axis "Time (symbol periods)" 0 to 20. Approx tap values: t=0 0.05, t=1 0.32, t=2 0.78, t=3 0.42, t=4 0.29, t=5 0.11, t=6 0.04, t=7 0.04, t=8 0.02, t=9 ~0.01, t=10 ~0.01, t=11 ~0.005, t=12 ~0.005; ~0 beyond (tiny bar near t=18).

@@ -1,0 +1,15 @@
+[Figure 4.5: General layout of feedforward network used as an adaptive equaliser. Received signal x(n) enters a tapped delay line of z^-1 blocks giving taps x(n-1), x(n-2), ..., x(n-(I-1)). Each tap feeds an input node; an extra bias input node is fixed at -1.0. All input nodes connect to every hidden node (circles, "..."); the hidden nodes plus a second -1.0 bias node connect to a single output node giving the Equaliser Output y(n). (Scan label reads "Recieved Signal".)]
+
+2. Unsupervised training is used when the desired outputs of the ANN are unknown and the ANN tries to classify the input patterns into different groups by itself. Unsupervised learning is not used for equalisation in this project.
+
+4.4 Using feedforward ANNs in equalisation
+
+Figure 4.5 shows an example of a feedforward ANN used as an adaptive equaliser. There are I inputs connected to a tapped delay line with delays of one symbol period. The ANN has one hidden layer and an output layer with one output node. At time n, the received signal x(n) is passed into the delay line. The signals on the taps are fed through the network to produce the equaliser output of y(n).
+
+The inputs to an ANN are classified because the ANN approximates some kind of decision function. During channel equalisation the network is required to classify the pattern made by the signal on the delay into one of two classes:
+
+    1. Those input patterns result from +1 being transmitted at time n.
+
+    2. Those input patterns result from -1 being transmitted at time n.
+
+If an ANN has two inputs, and is trained on channel 1 (see section 3.4) with no noise, then there are 8 possible patterns that can be presented to the ANN. They are listed in table 4.1 with the sequence of transmitted symbols that generated them. The input patterns are plotted in blue in 2 dimensional space in figure 4.6. A x implies that co-ordinate should be classified as -1, and

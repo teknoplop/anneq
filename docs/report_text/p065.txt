@@ -1,0 +1,19 @@
+pp267-278, March 1994.
+
+[19] S. Cheng, B. Mulgrew, P. Grant, "A clustering technique for Digital Communications
+Channel Equalisation Using Radial-Basis Function Networks," IEEE transactions on Neural
+Networks, vol. 4, pp570-579, July 1993.
+
+[20] M. J. Bradley, P. Mars, "A Critical Assessment of Recurrent Artificial Neural Networks as
+Adaptive Equalizers in Digital Communications," IEE Colloquium on Applications of Neural
+Networks to Signal Processing, 15 December 1994.
+
+[21] T. Kohonen, K. Raivio, O. Simula, O. Ventä, J. Henriksson, "An Adaptive Discrete-signal
+Dectector based on Self-Organizing maps," IJCNN San Diego, II-249 - II-256, 1989.
+
+[22] S. Haykin, Introduction to Adaptive Filters, Macmillan Publishing Company, 1984.
+
+[23] C. F. N. Cowan, P. M. Grant, Adaptive Filters, Prentice-Hall, 1985.
+
+[24] J. G. Proakis, Digital Communications, McGraw-Hill, 1983.
+

@@ -1,0 +1,75 @@
+/*
+        FILENAME:               BP_INIT.H
+
+        DESCRIPTION:    Initialisation file for Backprop equaliser simulator.
+
+        RESTRICTIONS:   None
+
+        VERSION:                1       29/03/95        Original version.
+                                        2       08/04/95        Remove biases from structures -
+just use one extra node in the layer above.
+*/
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "eq_funcs.h"
+#include "bpbc.h"
+
+ANN_STR                                 ann;                    /* Neural network data structure
+*/
+FIR_MODEL_STR   far             *modelline;     /* Pointer to channel model shift register */
+double                  far             *errors;                /* Pointer to output error vector
+*/
+double                                  snr;                    /* Signal to noise ratio in dB's
+*/
+TRAIN_STR               far             *train_vect;    /* Pointer to set of test vectors */
+int                             far             *train_list;
+int                                             taps;                   /* Number of equalizer
+taps */
+int                                             m_taps;                 /* Number of taps in
+channel model FIR filter */
+int                                             bits;                   /* Length of preamble in
+bits */
+int                                             runs;                   /* Number of trials to run
+*/
+int                                             x,y;                    /* Display co-ordinates */
+int                                             pn_shift[5] = {1, 1, 1, 1, 1};          /* PN
+sequence shift register */
+int                                             epochs;
+
+void bp_init(void)
+        {
+        FILE                    *consts_file;
+        FILE                    *weights_file;
+        int                             i;
+    WEIGHT_STR far      *weight_ptr;
+    NODE_STR   far      *node_ptr;
+
+/* Display start banner */
+
+        #ifndef DEBUG
+        printf("\n");
+        _setcursortype(_NOCURSOR);
+        textcolor(WHITE);
+        textbackground(BLACK);
+        highvideo();
+        for (i=0; i<80; i++)
+                {
+                cprintf("%c",(char)220);
+                }
+        textbackground(BLUE);
+        cprintf("%c BACKPROPAGATION EQUALIZER SIMULATOR v1.0
+%c", (char)221, (char)222);
+        cprintf("%c             FINAL YEAR PROJECT by [name omitted] IIIE 23/03/95
+%c", (char)221, (char)222);
+        textbackground(BLACK);
+        for (i=0; i<80; i++)
+                {
+                cprintf("%c",(char)223);
+                }
+        textbackground(BLUE);
+        y=wherey()-3;
+        x=70;

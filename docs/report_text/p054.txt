@@ -1,0 +1,76 @@
+                signal = 1.0;
+
+                #ifndef DEBUG
+                gotoxy(x-10, y);
+                printf("TRAINING ");
+                #else
+                printf("Generating Training Sequence\n");
+                #endif
+
+                for(i=0; i<(bits + ceil((double)ann.nodes_0/2.0)); i++)
+                        {
+/* Add next preamble bit into channel model */
+
+                        train_vect[i].desired = modelline[0].value = signal;
+
+/* Calculate signal and add to equalilser shift register */
+
+                        train_vect[i].value = fir_output(modelline, m_taps) + noise(snr);
+
+/* Work out next value in PN sequence */
+
+            signal = pn_shift[1] ^ pn_shift[4];
+
+                        for(j=4; j>0; j--)
+                                {
+                                pn_shift[j] = pn_shift[j-1];
+                                }
+
+                        pn_shift[0] = (int)signal;
+
+                        if (signal == 0)
+                                {
+                                signal = -1.0;
+                                }
+
+/* Shift the channel model FIR filter values along */
+
+                        shift_right_fir(modelline, m_taps);
+                        }
+
+        #ifdef DEBUG
+                printf("Starting training ...\n");
+                while(!kbhit());
+                getch();
+                clrscr();
+                #endif
+                                        gotoxy(1, 1);
+                        print_weights(ann.layer_1, ann.layer_0, ann.nodes_0+1, ann.nodes_1);
+                        print_weights(ann.layer_2, ann.layer_1, ann.nodes_1+1, ann.nodes_2);
+                        print_weights(ann.layer_3, ann.layer_2, ann.nodes_2+1, ann.nodes_3);
+                        printf("\n");
+                        while(!kbhit());
+                        getch();
+
+/* Initialise the network */
+
+                for(i=0; i<ann.nodes_1; i++)
+                        {
+                        for(j=0; j<ann.nodes_0+1; j++)
+                                {
+                                ann.layer_1[i].weights[j].weight = 0.3* URAND
+/*(2.4/ann.nodes_0)*/;
+                                ann.layer_1[i].weights[j].delta = 0.0;
+                                ann.layer_1[i].weights[j].delta_sf = 0.0;
+                                }
+                        }
+
+                for(i=0; i<ann.nodes_2; i++)
+                        {
+                        for(j=0; j<ann.nodes_1+1; j++)
+                                {
+                                ann.layer_2[i].weights[j].weight = 0.3*URAND
+/*(2.4/ann.nodes_1)*/;
+                                ann.layer_2[i].weights[j].delta = 0.0;
+                                ann.layer_2[i].weights[j].delta_sf = 0.0;
+                                }

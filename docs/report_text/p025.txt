@@ -1,0 +1,21 @@
+1. Feed the input signals through the network.
+2. Calculate the error of the network output.
+3. Calculate the local gradient of the output node using equation (6-2).
+4. Calculate the local gradients of the hidden nodes using equation (6-3).
+5. Update weights using equation (6-1)
+6. Go to step 1 until trained, i.e. when e(n) reaches an acceptable minimum.
+
+The activation function of the MLP is usually taken as the sigmoid function (plotted in figure 6.1),
+
+φ[v(n)] = tanh(v(n))        (6-4)
+
+because it has a continuous and simple differential,
+
+φ'[v(n)] = d/dv(n) (φ[v(n)]) = 1 - (φ[v(n)])^2        (6-5)
+
+6.2 Testing the backpropagation equaliser
+
+Reference [???] (handwritten correction: 6) states that the backpropagation equaliser adapts better than the ADALINE equaliser in noisy conditions. However, when tested the backpropagation equaliser was found to be extremely unreliable. The equaliser failed to converge within 1000 training bits at least once in every five trials, even on noiseless channels. For this reason, temporal training of the backpropagation algorithm was not investigated any further.
+
+[Figure 6.1: The sigmoid activation function.]
+y-axis "sigmoid function - tanh(v(n))" -1.5 to 1.5; x-axis "v(n)" -4 to 4. Curve tanh(v): -1 at v=-4, 0 at v=0, +1 at v=4, with a horizontal zero line.

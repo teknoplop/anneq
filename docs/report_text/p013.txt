@@ -1,0 +1,23 @@
+4. Feedforward Artificial Neural Networks[11][12][13][14]
+
+This section introduces the feedforward ANN structure and explains the notation used in this report.
+
+4.1 General feedforward neural network structure
+
+A feedforward ANN consists of several layers of nodes. These nodes, or perceptrons, are modelled on the neurons that are found in a living brain. There are three types of nodes:
+
+  1. Input nodes act as buffers, i.e. they have one output that follows the one input exactly. Input nodes, as their name suggests, form the first layer of the ANN.
+
+  2. Output nodes make up the final layer of the ANN and the outputs of these nodes are the network's outputs. These nodes have the structure of the perceptron model.
+
+  3. Hidden nodes are so called because neither their inputs nor their output are seen by the "outside world". Other than this they are physically the same as output nodes in that they also follow the perceptron model.
+
+The each output and hidden node is connected to the outputs of all the nodes in the previous layer as shown in figure 4.1. This creates a large set of interconnections, and it is this that makes the neural network a complex, but powerful parallel structure.
+
+4.2 Perceptron model
+
+A simple diagram of a biological neuron can be seen in figure 4.2. It has many inputs and one output which fires when the sum of the inputs exceed a threshold.
+
+The general structure of perceptron model can be seen in figure 4.3. It is indexed as node j from a layer of similar nodes. There are I inputs, x_0(n) to x_(I-1)(n) that are multiplied by their own
+
+[Figure 4.1: General layout of a feedforward ANN. Four network inputs feed a layer of four input nodes (squares), fully connected to a layer of three hidden nodes (circles), fully connected to a layer of two output nodes giving the network outputs.]

@@ -1,0 +1,5 @@
+SUMMARY
+
+This project investigates the application of Artificial Neural Networks to the field of adaptive equalisation. The report begins by explaining the causes of Intersymbol Interference and how equalisers are used to counter act it. Next, a procedure for testing and comparing equalisers is described. The project then looks at the performance of four types of neural network as equalisers, namely ADALINE, backpropagation, recurrent an radial-basis function networks.
+
+The results of a fair comparison of the networks under real life conditions are presented at the end of the report and from these it is concluded that artificial neural networks are unsuitable of channel equalisation.

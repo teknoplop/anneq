@@ -1,0 +1,76 @@
+/*
+     FILENAME:                LMS_INIT.H
+
+     DESCRIPTION:   Initialisation file for LMS equaliser simulator.
+
+     RESTRICTIONS:  None
+
+     VERSION:                 1    29/03/95       Original version.
+                              2    08/04/95       Remove biases from structures -
+just use one extra node in the layer above.
+*/
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <string.h>
+#include "eq_funcs.h"
+#include "lms.h"
+
+
+ANN_STR                            ann;                /* Neural network data structure
+*/
+FIR_MODEL_STR   far           *modelline;    /* Pointer to channel model shift register */
+FIR_MODEL_STR   far           *delayline;    /* Pointer to channel model shift register */
+double                   far          *errors;            /* Pointer to output error vector
+*/
+double                   far          *error_run;
+double                                snr;                /* Signal to noise ratio in dB's
+*/
+double                                pass_threshold;
+int                                        taps;               /* Number of equalizer
+taps */
+int                                        m_taps;             /* Number of taps in
+channel model FIR filter */
+int                                        bits;               /* Length of preamble in
+bits */
+int                                        runs;               /* Number of trials to run
+*/
+int                                        x,y;                /* Display co-ordinates */
+int                                        delay;         /* How long to delay desired
+signal for */
+int                                        pn_shift[5] =
+                                                {1, 1, 1, 1, 1};        /* PN sequence
+shift register */
+
+void lms_init(char path[])
+     {
+     FILE                *consts_file;
+     FILE                *weights_file;
+     char                filename[100];
+     int                      i;
+
+
+/* Display start banner */
+
+     printf("\n");
+     _setcursortype(_NOCURSOR);
+     textcolor(WHITE);
+     textbackground(BLACK);
+     highvideo();
+     for (i=0; i<80; i++)
+          {
+          cprintf("%c",(char)220);
+          }
+     textbackground(BLUE);
+     cprintf("%c ADALINE EQUALISER SIMULATOR v1.0
+%c", (char)221, (char)222);
+     cprintf("%c                FINAL YEAR PROJECT by [name omitted] 08/04/95
+%c", (char)221, (char)222);
+     textbackground(BLACK);
+     for (i=0; i<80; i++)
+          {
+          cprintf("%c",(char)223);
+          }
+     textbackground(BLUE);
+     y=wherey()-3;
+     x=70;

@@ -1,0 +1,5 @@
+[Figure 7.2: Convergence performance of RNN equaliser on Channel 1.]
+Log y-axis "Log10 Ensemble Squared Error" 0.01 to 1; x-axis "Preamble Bit Number" 0 to 1000. Single noisy curve: starts ~1 at bit 0, ~0.25 at bit 50, ~0.15 at bit 150, ~0.08 at bit 300, settles ~0.055 (range ~0.04-0.08) from bit ~400 to 1000.
+
+[Figure 7.3: BER performance of RNN equaliser on Channel 1.]
+Log y-axis "log10 (BER)" 1E-05 to 1E+00; x-axis "SNR (dB)" with ticks 6, 8, ..., 24, 30 (last tick labelled 30). Points (approx): 6 dB 1.1E-01, 8 dB 7.5E-02, 10 dB 4.5E-02, 12 dB 2.2E-02, 14 dB 8E-03, 16 dB 2E-03, 18 dB 3.5E-04, 20 dB 4E-05.

@@ -1,0 +1,31 @@
+6. Backpropagation Equaliser [14]
+
+The backpropagation algorithm is used on MLP ANNs of any number of layers and has proved to be the most popular algorithm in the field of neural networks. This section aims to provide a brief introduction and the relevance of the backpropagation algorithm to equalisation.
+
+6.1 The Backpropagation Algorithm
+
+If the sum of squared errors of the network at time n is defined as
+
+ε(n) = (1/2) Σ_{k=0}^{K} e_k^2(n)
+
+then the aim of the backpropagation algorithm is to minimise ε(n) by applying a correction of Δw_ij to weight w_ij for all weights in the network. It achieves this by estimating the instantaneous gradient of the sum of squared errors with respect to that weight:
+
+∂ε(n) / ∂w_ij(n)
+
+which provides the direction of search to a minimum in weight/error space, for the weight w_ij. Reference [???] (handwritten correction: 14) makes use of the chain rule to provide an equation for the local error gradient for node j
+
+δ_j(n) = e_j(n) φ'[v_j(n)]
+
+where e_j(n) is the error of the output of node j in the network. The simple gradient descent rule provides the weight correction term,
+
+Δw_ij(n) = η δ_j y_i        (6-1)
+
+where η is the learning rate chosen small enough to avoid instability of the network. Therefore, for the one output node of an MLP used as an equaliser:
+
+Δw_i0(n) = (d(n) - y(n)) φ'[v_0(n)]        (6-2)
+
+The error signals of each node are propagated back through the hidden nodes in the network by:
+
+δ_i(n) = φ'[v(n)] Σ_{j=0}^{J} δ_j(n) w_ij        (6-3)
+
+where J represents the number of nodes in the second layer and δ_i is the local derivative for node i. The backpropagation algorithm is as follows:

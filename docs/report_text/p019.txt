@@ -1,0 +1,23 @@
+5. ADALINE equaliser
+
+5.1 The adaptive linear element
+
+The ADAptive LINear Element (ADALINE) is a structure based on the perceptron model shown in figure 4.1. The activation function of an ADALINE is linear:
+
+    \varphi[v(n)] = v(n)
+
+The ADALINE was put forward in the early 1960's by Widrow[15], together with the Least Means Squares (LMS) algorithm for training ADALINE networks[16].
+
+5.2 The ADALINE and LMS in equalisation
+
+Figure 5.1 shows an ADALINE used as an adaptive equaliser. The network has I inputs, no hidden layer and one ADALINE node in the output node. The output of the network is subtracted from the desired output signal to give the error signal:
+
+    e(n) = d(n) - y(n)
+
+The LMS algorithm is a gradient descent algorithm and is described in more detail in appendix A. It uses e(n) to calculate the next change in the weights:
+
+    w_i0(n+1) = w_i0(n) + 2\eta e(n) x(n-1)
+
+where \eta is the learning rate, a constant that limits the amount a weight is changed by. If \eta is too large then the network will become unstable and the values of the weights will tend to infinity.
+
+[Figure 5.1: Structure of the ADALINE equaliser. Input x(n) feeds a tapped delay line of z^-1 blocks giving x(n-1), x(n-2), ..., x(n-(I-1)); each tap and a -1.0 bias feed input nodes, connected through weights w^ij_00(n), w^ij_10(n), w^ij_20(n), w^ij_30(n), ..., w^ij_I0(n) to a single output node. The output (labelled c(n) on the page) is subtracted from the desired signal at a summing junction to give the Error e(n).]

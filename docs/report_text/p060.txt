@@ -1,0 +1,76 @@
+                fclose(consts_file);
+                }
+        else
+                {
+                printf("\n\nFile %s not found", filename);
+                exit(1);
+                }
+
+        ann.nodes_2 = 1;
+
+        if ((modelline = (FIR_MODEL_STR far *)calloc(m_taps, sizeof(FIR_MODEL_STR))) == NULL)
+                {
+                printf("Calloc failiure on modelweights");
+                exit(1);
+                }
+
+/* Load in channel model weights */
+
+        sprintf(filename, "%sWEIGHTS.TXT", path);
+        if ((weights_file = fopen(filename, "rt")) != NULL)
+                {
+                for(i=0; i<m_taps; i++)
+                        {
+                        fscanf(weights_file, "%lf\n", &modelline[i].weight);
+                        }
+                fclose(weights_file);
+                }
+        else
+                {
+                printf("\n\nFile %s not found", filename);
+                exit(1);
+                }
+
+/* Allocate memory for ann layers */
+
+        if ((ann.layer_0 = (NODE_STR  far *)calloc(ann.nodes_0, sizeof(NODE_STR))) == NULL)
+                {
+                printf("Calloc failiure on input nodes\n");
+                exit(1);
+                }
+
+        if ((ann.layer_1 = (NODE_STR  far *)calloc(ann.nodes_1, sizeof(NODE_STR))) == NULL)
+                {
+                printf("Calloc failiure on input nodes\n");
+                exit(1);
+                }
+
+        if ((ann.layer_2 = (NODE_STR  far *)calloc(1, sizeof(NODE_STR))) == NULL)
+                {
+                printf("Calloc failiure on input nodes\n");
+                exit(1);
+                }
+
+/* Allocate each node a weight vector */
+
+        for(i=0; i<ann.nodes_1; i++)
+                {
+                if ((ann.layer_1[i].weights = (WEIGHT_STR far *)calloc(ann.nodes_0,
+sizeof(WEIGHT_STR))) == NULL)
+                        {
+                        printf("Calloc failiure on weights\n");
+                        exit(1);
+                        }
+                }
+        if ((ann.layer_2[0].weights = (WEIGHT_STR far *)calloc(ann.nodes_1,
+sizeof(WEIGHT_STR))) == NULL)
+                {
+                printf("Calloc failiure on weights\n");
+                exit(1);
+                }
+
+/* Fill ADALINE weights vector */
+
+        for(i=0; i<(ann.nodes_1/2); i++)
+                {
+                ann.layer_2[0].weights[i].weight = -1.0;

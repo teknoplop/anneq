@@ -1,0 +1,75 @@
+int no_inputs, int no_nodes)
+
+     DESCRIPTION:                  Feeds signal in layer 1 through to layer 2 with sigmoid
+activation functions
+*/
+
+void ffwd_sig(NODE_STR far *inputs, NODE_STR far *nodes, int no_inputs, int no_nodes)
+     {
+     int          i,j;
+     double  input;
+
+     for (i=0; i<no_nodes; i++)
+          {
+          input = 0.0;
+          for(j=0; j<no_inputs; j++)
+               {
+               input += inputs[j].output * nodes[i].weights[j].weight;
+               }
+          nodes[i].output =SIGMOID(input);
+          }
+     }
+
+/*
+     FUNCTION PROTOTYPE:           void print_weights(NODE_STR far *layer1, NODE_STR far
+*layer2, int nodes1, int nodes2)
+
+     DESCRIPTION:                  Print weights and outputs between layers 1 and 2
+*/
+
+void print_weights(NODE_STR far *layer1, NODE_STR far *layer2, int nodes1, int nodes2)
+     {
+
+     int i,j;
+
+     for (i=0; i<nodes1; i++)
+          {
+          for (j=0; j<nodes2; j++)
+               {
+               printf("%+01.5lf ", layer2[j].weights[i].weight);
+               }
+          printf(" | %+01.5lf\n", layer1[i].output);
+          }
+     for (i=0; i<nodes2; i++)
+          {
+          printf("=========");
+          }
+     printf("\n");
+     for (i=0; i<nodes2; i++)
+          {
+          printf("%+01.5lf ", layer2[i].output);
+          }
+   printf("\n\n");
+     }
+
+/*
+     FUNCTION PROTOTYPE:           void print_dervs(NODE_STR far *layer2, int nodes1)
+
+     DESCRIPTION:                  Prints derivitives in layer 2
+*/
+
+void print_dervs(NODE_STR far *layer2, int nodes1)
+     {
+
+     int i;
+
+     for (i=0; i<nodes1; i++)
+          {
+          printf("%+01.5lf ", layer2[i].derivative);
+          }
+     printf("\n\n");
+     }
+
+/*
+     FUNCTION PROTOTYPE:           void print_deltas(NODE_STR far *layer2, int nodes1, int
+nodes2)

@@ -1,0 +1,76 @@
+/*
+     FILENAME:                EQ_FUNCS.C
+
+     DESCRIPTION:   Provides useful functions for adaptive equaliser simulations.
+
+     RESTRICTIONS:  None
+
+     VERSION:                 1    29/03/95    Original version.
+                              2    08/04/95    Remove biases from structures -
+just use one extra node in the layer above.
+*/
+
+
+/* Include header files */
+
+#include <stdlib.h>
+#include <math.h>
+#include <conio.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include "eq_funcs.h"
+
+
+int     params(int no_pars, char *par_txt[])
+     {
+     int     i;
+     int          test = 0;
+     char    *input_txt;
+
+     if (no_pars > 1)
+          {
+          input_txt = par_txt[1];
+          for (i=0; i<(int)strlen(input_txt); i++)
+               {
+               input_txt[i] = toupper(input_txt[i]);
+               }
+          if (!strcmp("TEST", input_txt))
+               {
+               test = 1;
+               }
+          }
+     return test;
+     }
+
+/*
+     FUNCTION PROTOTYPE:           double noise(double sig_to_noise)
+
+     DESCRIPTION:                  Returns a Gaussian distributed number with a variance
+defined by the input
+                                             parameter sig_to_noise (the SNR).
+*/
+
+double noise(double sig_to_noise)
+     {
+     double rand1; /* Holds two uniform random numbers */
+
+/* Generate a uniform random number not equal to zero */
+
+  while ((rand1 = URAND) == 0.0);
+
+/* Return a Gaussian random number */
+
+     return (sqrt(-2.0*pow(10.0, (double)(-sig_to_noise/10.0))*log(rand1))*cos(2.0 * M_PI *
+URAND));
+     }
+
+
+/*
+     FUNCTION PROTOTYPE:           void prbs(double far *sequence, int length)
+
+     DESCRIPTION:                  Fills the structure a sequence with 1's and -1's with
+equal probability of
+                                             occurance. The sequence length is defined
+by the input parameter length.
+*/
