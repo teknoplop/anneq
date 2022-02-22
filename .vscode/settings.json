@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "atomic": "cpp",
+        "bitset": "cpp",
+        "EQ_FUNCS.C": "cpp"
+    }
+}
