@@ -5,7 +5,7 @@ DEP=$(OBJ:%.o=%.d)
 CFLAGS=-std=c89
 
 lms.exe: $(OBJ)
-	$(CC) -o $@ $^ 
+	$(CC) -lm -o $@ $^ 
 
 %.o: %.c
 	$(CC) -g -MMD -I. -c -o $@ $<

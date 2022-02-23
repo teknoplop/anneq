@@ -21,7 +21,7 @@ extern int                 m_taps;          // Number of taps in cannel model FI
 extern int                 bits;            // Length of preamble in bits
 extern int                 runs;            // Number of trials to run
 extern int                 x,y;             // Display co-ordinates
-int                        pn_shift[5];     // PN sequence shift register
+extern int                 pn_shift[5];     // PN sequence shift register
 extern int                 delay;           // How lon to delay desired signal for
 
 /* Function prototypes */
