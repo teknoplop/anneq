@@ -1,0 +1,18 @@
+Mac mini M4, one thread, BPBC 2-6-6-1, 40 patterns, 1000 epochs, 20 trials = 800 000 presentations
+(presentation = forward + backward + gradient accumulation for one pattern; 1 epoch update per 40)
+
+faithful src/clang build_fix/bpbc (BPBC.C, no BER test)   0.11 s   7.3e6 presentations/s
+gateware/ref/bpfix.c bench, double (-O3 -mcpu=native)     0.082 s  9.7e6 presentations/s
+gateware/ref/bpfix.c bench, fixed point (engine model)    0.032 s  2.5e7 presentations/s
+numpy batch trainer (all trials x patterns at once)       0.21 s   3.7e6 presentations/s
+
+ADALINE/LMS, 7 taps:
+faithful src/clang build_fix/lms, 1000 runs x 10000 bits  0.24 s   4.2e7 updates/s
+numpy anneq_numpy (100 trials side by side, warm)         0.011 s  9.1e6 updates/s
+
+Accuracy, ch1, 20 trials, BER mean / median over 10 000 test bits, float forward pass:
+SNR   numpy float64          fixed point (= board, bit-exact)
+ 6    5.70e-2                5.93e-2 / 5.41e-2
+10    1.08e-2                1.33e-2 / 1.09e-2
+14    8.75e-4                2.08e-3 / 9.0e-4
+21    0                      2.0e-5  / 0

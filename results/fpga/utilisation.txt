@@ -1,0 +1,26 @@
+== NENG=10
+	              DP16KD:      40/     56    71%
+	          MULT18X18D:      20/     28    71%
+	          TRELLIS_FF:   10595/  24288    43%
+	        TRELLIS_COMB:   21954/  24288    90%
+	        TRELLIS_RAMW:     458/   3036    15%
+Max frequency for clock '$glbnet$clk$TRELLIS_IO_IN': 54.33 MHz (PASS at 50.00 MHz)
+== NENG=11 (before TX FIFO; fits)
+	              DP16KD:      44/     56    78%
+	          MULT18X18D:      22/     28    78%
+	          TRELLIS_FF:   11600/  24288    47%
+	        TRELLIS_COMB:   23752/  24288    97%
+	        TRELLIS_RAMW:     495/   3036    16%
+Max frequency for clock '$glbnet$clk$TRELLIS_IO_IN': 52.75 MHz (PASS at 50.00 MHz)
+== NENG=12 (earlier revision, before TX FIFO: does not fit)
+	              DP16KD:      48/     56    85%
+	          MULT18X18D:      24/     28    85%
+	          TRELLIS_FF:   12626/  24288    51%
+	        TRELLIS_COMB:   26038/  24288   107%
+	        TRELLIS_RAMW:     540/   3036    17%
+== NENG=14 (earlier revision, before TX FIFO: does not fit)
+	              DP16KD:      56/     56   100%
+	          MULT18X18D:      28/     28   100%
+	          TRELLIS_FF:   14678/  24288    60%
+	        TRELLIS_COMB:   30263/  24288   124%
+	        TRELLIS_RAMW:     630/   3036    20%

@@ -1,0 +1,10 @@
+BasedOnStyle: LLVM
+BreakBeforeBraces: Allman
+IndentWidth: 4
+ColumnLimit: 100
+SpacesInParens: Custom
+SpacesInParensOptions:
+  InConditionalStatements: true
+  Other: true
+  InEmptyParentheses: false
+  InCStyleCasts: false

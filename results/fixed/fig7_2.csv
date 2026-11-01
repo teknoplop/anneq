@@ -1,0 +1,3 @@
+impl,setting,trials,ber,fail_per_trial,final_err,hung,gaveup_per_trial,secs,final_err_all
+pyfix,snr=21,100,0.0,0.0,0.001627364,False,0.0,5.9,0.001627364
+pyfix_pn31,snr=21,100,0.0,0.0,0.001594371,False,0.0,5.9,0.001594371

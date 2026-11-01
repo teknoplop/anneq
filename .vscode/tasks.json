@@ -1,0 +1,61 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build 1995 programs (clang)",
+      "type": "shell",
+      "command": "make -C src/clang all",
+      "group": "build",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Build fixed programs (apply src/fixes/*.patch)",
+      "type": "shell",
+      "command": "make -C src/clang all fixed variants",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Check Python ports against C (byte for byte)",
+      "type": "shell",
+      "command": "uv run --no-project python src/tools/check_pyport.py",
+      "dependsOn": "Build fixed programs (apply src/fixes/*.patch)",
+      "group": "test"
+    },
+    {
+      "label": "Build and check C++ port (byte for byte)",
+      "type": "shell",
+      "command": "make -C src/clang/anneq all sanitize && uv run --no-project python src/tools/check_cpp.py && EQ_CPP_BUILD=build_san uv run --no-project python src/tools/check_cpp.py",
+      "dependsOn": "Build fixed programs (apply src/fixes/*.patch)",
+      "group": "test",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Test src/anneq.py (Pythonic simulators)",
+      "type": "shell",
+      "command": "uv run --python 3.15 --no-project --with numpy --with scipy --with pytest pytest -q src/tests",
+      "group": "test"
+    },
+    {
+      "label": "Compare src/anneq.py with the fixed line port",
+      "type": "shell",
+      "command": "uv run --python 3.15 --no-project --with numpy --with scipy python scenarios/compare_pythonic.py --jobs 8",
+      "group": "test"
+    },
+    {
+      "label": "Run 2026 tests",
+      "type": "shell",
+      "command": "uv run --extra test pytest -q",
+      "group": "test"
+    }
+  ]
+}

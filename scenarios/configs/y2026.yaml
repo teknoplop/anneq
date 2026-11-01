@@ -1,0 +1,18 @@
+# Sweep configuration. Window m and delay d are shared by every method on a channel
+# (d = MMSE-optimal delay of the linear equaliser at 12 dB, see channels.mmse_delay).
+offline:
+  snr_db:
+    ch1: [0, 2, 4, 6, 8, 10, 12, 14, 16]
+    ch2: [0, 2, 4, 6, 8, 10, 12, 14, 16]
+    ch1nl: [0, 2, 4, 6, 8, 10, 12, 14, 16]
+    ch3: [6, 8, 10, 12, 14, 16, 18, 20, 22]
+  n_train: 100000
+  n_val: 20000
+  min_errors: 100
+  max_bits: 2000000
+preamble:
+  snr_db: {ch1: 10, ch2: 10, ch1nl: 10, ch3: 16}
+  n_pre: [32, 64, 128, 256, 512, 1024, 4096]
+  trials: 5
+  steps: 1500
+  n_test: 50000

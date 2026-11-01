@@ -1,0 +1,25 @@
+RNN-KRON: fix for #11
+https://github.com/teknoplop/anneq/issues/11
+
+In RTRL the term delta_kj*u_l sits inside the sum over the fed-back nodes, so it is added
+nodes_1 times, raising the effective learning rate. Divide it by nodes_1 (same as adding it once).
+In effect this only rescales the learning rate: the recursion is linear, so the fix is the same as
+dividing eta by nodes_1 (see results/RNN_ISOLATION.md). Re-tune eta with it.
+
+Applies to the sources prepared by src/tools/prepare.py (wrapped lines rejoined,
+names lower-cased), not to src/borland/ directly:
+  patch -p1 -d <prep dir> < src/fixes/RNN-KRON.patch
+
+--- a/rnn.c
++++ b/rnn.c
+@@ -165,7 +165,9 @@
+ 
+         ann.layer_1[k].weights[l].sensitivity[j].sum += (ann.layer_1[j].weights[i].weight *
+ ann.layer_1[k].weights[l].sensitivity[i-ann.nodes_0-1].sense +
++/* Fix #11: the training-rule term counted too many times
++ * https://github.com/teknoplop/anneq/issues/11 */
+-KRONECKER(k,j)*ann.layer_0[l].output);
++KRONECKER(k,j)*ann.layer_0[l].output/ann.nodes_1);
+                                                                         }
+                                                                 }
+                                                         }

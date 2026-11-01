@@ -1,0 +1,62 @@
+BP-DEBUG: fix for #17
+https://github.com/teknoplop/anneq/issues/17
+
+Weight dumps and "press a key" pauses run on every trial, and they call print_weights() with its
+layer arguments swapped, reading the input layer's NULL weight pointers. Harmless on real-mode DOS
+(it reads low memory), a segfault on a hosted OS. Removed. The third hunk is inside #ifdef DEBUG
+and only matters for debug builds.
+
+Applies to the sources prepared by src/tools/prepare.py (wrapped lines rejoined,
+names lower-cased), not to src/borland/ directly:
+  patch -p1 -d <prep dir> < src/fixes/BP-DEBUG.patch
+
+--- a/bpbc.c
++++ b/bpbc.c
+@@ -120,13 +120,8 @@
+                 getch();
+                 clrscr();
+                 #endif
++                                        /* Fix #17: debug weight dump (arguments swapped) and key wait removed
++                                         * https://github.com/teknoplop/anneq/issues/17 */
+-                                        gotoxy(1, 1);
+-                        print_weights(ann.layer_1, ann.layer_0, ann.nodes_0+1, ann.nodes_1);
+-                        print_weights(ann.layer_2, ann.layer_1, ann.nodes_1+1, ann.nodes_2);
+-                        print_weights(ann.layer_3, ann.layer_2, ann.nodes_2+1, ann.nodes_3);
+-                        printf("\n");
+-                        while(!kbhit());
+-                        getch();
+ 
+ /* Initialise the network */
+ 
+@@ -170,13 +165,8 @@
+                 ann.layer_1[ann.nodes_1].output = -1.0;
+                 ann.layer_2[ann.nodes_2].output = -1.0;
+ 
++                        /* Fix #17: debug weight dump (arguments swapped) and key wait removed
++                         * https://github.com/teknoplop/anneq/issues/17 */
+-                        gotoxy(1, 1);
+-                        print_weights(ann.layer_1, ann.layer_0, ann.nodes_0+1, ann.nodes_1);
+-                        print_weights(ann.layer_2, ann.layer_1, ann.nodes_1+1, ann.nodes_2);
+-                        print_weights(ann.layer_3, ann.layer_2, ann.nodes_2+1, ann.nodes_3);
+-                        printf("\n");
+-                        while(!kbhit());
+-                        getch();
+ 
+ /* Start training */
+ 
+@@ -209,13 +199,8 @@
+                                 }
+                         #ifdef DEBUG
+             clrscr();
++                        /* Fix #17: debug weight dump (arguments swapped) and key wait removed
++                         * https://github.com/teknoplop/anneq/issues/17 */
+-                        gotoxy(1, 1);
+-                        print_weights(ann.layer_1, ann.layer_0, ann.nodes_0+1, ann.nodes_1);
+-                        print_weights(ann.layer_2, ann.layer_1, ann.nodes_1+1, ann.nodes_2);
+-                        print_weights(ann.layer_3, ann.layer_2, ann.nodes_2+1, ann.nodes_3);
+-                        printf("\n");
+-                        while(!kbhit());
+-                        getch();
+                         #endif
+                         errors[i] += sum_sqr_err/bits;
+                         update_weights_fi(ann.layer_3, ann.nodes_2+1, ann.nodes_3,

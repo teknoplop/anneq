@@ -1,0 +1,26 @@
+built (arm64)
+./run.sh: line 3: 90255 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90273 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90271 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90336 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90339 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90357 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90360 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90378 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90381 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90399 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90696 Abort trap: 6           EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90691 Abort trap: 6           EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90693 Abort trap: 6           EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90699 Abort trap: 6           EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90687 Abort trap: 6           EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90710 Abort trap: 6           EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90712 Abort trap: 6           EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90709 Abort trap: 6           EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90448 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90466 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90469 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90487 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+./run.sh: line 3: 90490 Alarm clock: 14         EQ_SEED=1000 MallocNanoZone=1 perl -e 'alarm 90; exec @ARGV' ./$(cat EXE) TEST > /dev/null 2>&1
+C: 147 jobs in 184 s on mini.local
+Python: 141 jobs in 44 s

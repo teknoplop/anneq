@@ -1,0 +1,24 @@
+LMS-BIAS: fix for #13
+https://github.com/teknoplop/anneq/issues/13
+
+The ADALINE bias input layer_0[nodes_0] is never set (it stays 0 from calloc), so the network
+has no bias. Set it to -1, as the report's Figure 5.1 shows. Negligible effect on BER.
+Inserted as its own line so it applies independently of LMS-FILL.
+
+Applies to the sources prepared by src/tools/prepare.py (wrapped lines rejoined,
+names lower-cased), not to src/borland/ directly:
+  patch -p1 -d <prep dir> < src/fixes/LMS-BIAS.patch
+
+--- a/lms.c
++++ b/lms.c
+@@ -84,6 +84,10 @@
+                     ann.layer_0[i].output  = -1.0;
+                     }
+ 
++               /* Fix #13: the bias input was never set (Figure 5.1 shows -1)
++                * https://github.com/teknoplop/anneq/issues/13 */
++               ann.layer_0[ann.nodes_0].output = -1.0;
++
+ /* Initialise the network */
+ 
+                fill_rand(ann.layer_1, ann.nodes_0+ann.nodes_1+1, ann.nodes_1);

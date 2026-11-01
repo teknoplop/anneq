@@ -1,0 +1,26 @@
+== LMS: 2 1000 21 3 0 7 0.01
+   1 SUMMARY: AddressSanitizer: heap-buffer-overflow eq_funcs.c:501 in fill_rand
+   1 ERROR: AddressSanitizer: heap-buffer-overflow on address  at pc  bp  sp 
+   1     #2  in main lms.c:51
+   1     #1  in main lms.c:89
+   1     #1  in lms_init lms_init.h:135
+   1     #0  in fill_rand eq_funcs.c:501
+== LMS: 10 1000 20 3 5 15 0.008
+   1 SUMMARY: AddressSanitizer: heap-buffer-overflow eq_funcs.c:501 in fill_rand
+   1 ERROR: AddressSanitizer: heap-buffer-overflow on address  at pc  bp  sp 
+   1     #2  in main lms.c:51
+   1     #1  in main lms.c:89
+   1     #1  in lms_init lms_init.h:135
+   1     #0  in fill_rand eq_funcs.c:501
+== RNN: 2 1000 21 3 0 2 3 0.005
+== RNN: 10 1000 20 3 5 10 4 0.003
+== RB: 2 1000 10 3 2 8 0.125
+== BPBC: 2 40 100 21 2 2 6 6 0.1 0.5
+   3     #1  in main bpbc.c:124
+   3     #0  in print_weights eq_funcs.c:268
+   1 ‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹› BACKPROPAGATION EQUALIZER SIMULATOR v1.0 ﬁ›             FINAL YEAR PROJECT by [name omitted] IIIE 23/03/95 ﬁﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂsrc/clang/build/eq_funcs.c:268:36: runtime error: member access within null pointer of type 'WEIGHT_STR'
+   1 SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior src/clang/build/eq_funcs.c:268:57 
+   1 SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior src/clang/build/eq_funcs.c:268:36 
+   1 SUMMARY: AddressSanitizer: SEGV eq_funcs.c:268 in print_weights
+   1 ERROR: AddressSanitizer: SEGV on unknown address  
+   1 src/clang/build/eq_funcs.c:268:57: runtime error: load of null pointer of type 'double'

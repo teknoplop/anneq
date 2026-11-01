@@ -1,0 +1,24 @@
+LMS-FILL: fix for #12
+https://github.com/teknoplop/anneq/issues/12
+
+fill_rand() is told nodes_0+nodes_1+1 = nodes_0+2 weights, but the array holds nodes_0+1,
+so it writes one weight past the end (heap overrun). Under DOS it clobbers errors[0]; on macOS
+malloc can abort. No other effect on results.
+
+Applies to the sources prepared by src/tools/prepare.py (wrapped lines rejoined,
+names lower-cased), not to src/borland/ directly:
+  patch -p1 -d <prep dir> < src/fixes/LMS-FILL.patch
+
+--- a/lms.c
++++ b/lms.c
+@@ -86,7 +86,9 @@
+ 
+ /* Initialise the network */
+ 
++               /* Fix #12: fill_rand wrote one weight past the end of the array
++                * https://github.com/teknoplop/anneq/issues/12 */
+-               fill_rand(ann.layer_1, ann.nodes_0+ann.nodes_1+1, ann.nodes_1);
++               fill_rand(ann.layer_1, ann.nodes_0+1, ann.nodes_1);
+ 
+ /* Set start bit */
+ 

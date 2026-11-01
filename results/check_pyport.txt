@@ -1,0 +1,29 @@
+OK   unfixed   LMS   ch1 7tap 10dB    BER         +0.0035500  default build: same
+OK   unfixed   LMS   ch2 delay7 6dB   BER         +0.0405667  default build: same
+OK   unfixed   LMS   eta=0.09 retries BER         +0.0953333  default build: same
+OK   unfixed   LMS   telephone        BER         +0.0101500  default build: same
+OK   unfixed   RNN   ch1 2-3          BER         +0.0068667  default build: same
+OK   unfixed   RNN   telephone 10-4   BER         +0.0086000  default build: same
+OK   unfixed   RB    ch1              BER         +0.0048000  default build: same
+OK   unfixed   RB    ch2              BER         +0.0063333  default build: same
+OK   unfixed   BPBC  ch1 6dB          BER +0.045800000000000  default build: differs (FMA)
+OK   LMS-FILL  LMS   ch1 7tap 10dB    BER         +0.0036250  default build: same
+OK   LMS-FILL  LMS   ch2 delay7 6dB   BER         +0.0391000  default build: same
+OK   LMS-FILL  LMS   eta=0.09 retries BER         +0.0000000  default build: same
+OK   LMS-FILL  LMS   telephone        BER         +0.0113000  default build: same
+OK   LMS-BIAS  LMS   ch1 7tap 10dB    BER         +0.0038250  default build: same
+OK   LMS-BIAS  LMS   ch2 delay7 6dB   BER         +0.0408667  default build: same
+OK   LMS-BIAS  LMS   eta=0.09 retries BER         +0.0760333  default build: same
+OK   LMS-BIAS  LMS   telephone        BER         +0.0100500  default build: same
+OK   RNN-FFWD  RNN   ch1 2-3          BER         +0.0029667  default build: same
+OK   RNN-FFWD  RNN   telephone 10-4   BER         +0.0052000  default build: same
+OK   RNN-KRON  RNN   ch1 2-3          BER         +0.0072000  default build: same
+OK   RNN-KRON  RNN   telephone 10-4   BER         +0.0692000  default build: same
+OK   all-C     LMS   ch1 7tap 10dB    BER         +0.0036250  default build: same
+OK   all-C     LMS   ch2 delay7 6dB   BER         +0.0404000  default build: same
+OK   all-C     LMS   eta=0.09 retries BER         +0.0061333  default build: same
+OK   all-C     LMS   telephone        BER         +0.0115000  default build: same
+OK   all-C     RNN   ch1 2-3          BER         +0.0043000  default build: same
+OK   all-C     RNN   telephone 10-4   BER         +0.0700000  default build: same
+OK   all-C     BPBC  ch1 6dB          BER +0.045800000000000  default build: differs (FMA)
+ALL BIT-EXACT

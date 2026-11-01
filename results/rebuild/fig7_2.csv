@@ -1,0 +1,5 @@
+impl,setting,trials,ber,fail_per_trial,final_err,hung
+clang,snr=21,100,0.0,0.0,0.020566525,False
+clang_20,snr=21,20,0.0,0.0,0.020059532999999997,False
+clang_fix,snr=21,100,0.0,0.0,0.052503645,False
+pyline,snr=21,20,0.0,0.0,0.020059532999999997,False

@@ -1,0 +1,37 @@
+RNN-FFWD: fix for #10
+https://github.com/teknoplop/anneq/issues/10
+
+ffwd_sig() is given nodes_0+1 inputs, so the fed-back outputs never reach the nodes: the
+"recurrent" network ran as a single tanh neuron. Feed all nodes_0+nodes_1+1 inputs, in training
+and test. This is the bug the author always suspected; with it fixed and the learning rate
+re-tuned the RNN beats the ADALINE on the telephone channel above 10 dB.
+
+Applies to the sources prepared by src/tools/prepare.py (wrapped lines rejoined,
+names lower-cased), not to src/borland/ directly:
+  patch -p1 -d <prep dir> < src/fixes/RNN-FFWD.patch
+
+--- a/rnn.c
++++ b/rnn.c
+@@ -137,8 +137,9 @@
+ 
+         /* Feed inputs through net */
+ 
++                                        /* Fix #10: the fed-back outputs never reached the nodes
++                                         * https://github.com/teknoplop/anneq/issues/10 */
+-                                        ffwd_sig(ann.layer_0, ann.layer_1, ann.nodes_0+1,
+-ann.nodes_1);
++                                        ffwd_sig(ann.layer_0, ann.layer_1, ann.nodes_0+ann.nodes_1+1, ann.nodes_1);
+ 
+         /* Calculate error and store square error */
+ 
+@@ -264,7 +265,9 @@
+ 
+ /* Feed inputs through net */
+ 
++                                /* Fix #10: the fed-back outputs never reached the nodes
++                                 * https://github.com/teknoplop/anneq/issues/10 */
+-                                ffwd_sig(ann.layer_0, ann.layer_1, ann.nodes_0+1, ann.nodes_1);
++                                ffwd_sig(ann.layer_0, ann.layer_1, ann.nodes_0+ann.nodes_1+1, ann.nodes_1);
+ 
+ /* Calculate output of equalizer and then work out its error */
+ 

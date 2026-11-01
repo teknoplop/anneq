@@ -1,0 +1,54 @@
+# Text substitutions for the corrected edition (build_docx.py --edition corrected).
+# One entry per change. `old` must occur exactly once in the paragraph text built from
+# docs/report_text.md (hard-wrapped lines joined with single spaces); `new` replaces it.
+# `item` is the numbered entry under "Which statements of the report change" in
+# results/RESULTS_FIXED.md. Every paragraph changed here gets a margin bar in the document.
+# Figures replaced with the corrected run are listed in build_docx.py (FIG_CORRECTED).
+
+- id: summary
+  section: Summary
+  item: 1
+  old: "and from these it is concluded that artificial neural networks are unsuitable of channel equalisation."
+  new: "and from these it is concluded that the backpropagation and radial-basis function networks are unsuitable of channel equalisation. The recurrent network gave fewer bit errors than the ADALINE at high SNRs, but needs about 30 times the computation per training bit, so it is not a practical replacement for the ADALINE equaliser."
+
+- id: retry-cap
+  section: "3.2"
+  item: 8
+  old: "If this test is failed, then the ANN is reset and trained again."
+  new: "If this test is failed, then the ANN is reset and trained again, up to a maximum of 10 attempts, and the number of trials that never train is recorded."
+
+- id: rnn-sensitivity
+  section: "7.3"
+  item: 2
+  old: "However, the RNN was very sensitive to the values for the learning rate and the structure size. If the learning rate was too high then the RNN became unstable very quickly, unlike the backpropagation algorithm which tended to recover after a while."
+  new: "However, the RNN was sensitive to the structure size and moderately sensitive to the learning rate. On channel 1 the BER stayed within about 20% of its best for learning rates from 0.05 to 0.3, and the RNN still trained with a rate of 0.5."
+
+- id: rnn-eta-ch1
+  section: "7.3"
+  item: 2
+  old: "three output nodes and a learning rate of 0.005."
+  new: "three output nodes and a learning rate of 0.12."
+
+- id: rnn-eta-tel
+  section: "9"
+  item: 4
+  old: "4 output nodes and a learning rate of 0.003."
+  new: "4 output nodes and a learning rate of 0.08."
+
+- id: fig9-statements
+  section: "9"
+  item: "5, 6"
+  old: "Figure 9.2 shows that the convergence of the ADALINE and RNN equalisers are very similar with the RNN achieving a slighter smaller final error. Figure 9.3 shows that the ADALINE network outperformed the RNN equaliser for BERs."
+  new: "Figure 9.2 shows that the RNN equaliser converges to a much smaller final error than the ADALINE, about 0.008 against 0.075 at 20 dBs SNR. Figure 9.3 shows that the two equalisers give similar BERs up to 10 dBs, but above this the RNN outperformed the ADALINE network, for example 1.5×10^-3 against 2.7×10^-3 at 16 dBs."
+
+- id: conclusion-rnn
+  section: "10"
+  item: 7
+  old: "but its high sensitivity to starting parameters and instability made it second best to the ADALINE network."
+  new: "and on the real life channel it gave a lower BER than the ADALINE network above 10 dBs. However, training it by RTRL takes about 30 times as many multiplications per training bit as the LMS algorithm, so it is not a practically sized network in the sense above."
+
+- id: conclusion-advantage
+  section: "10"
+  item: 7
+  old: "Thus the three ANNs compared to the ADALINE network showed no advantage in using complex non-linear structures."
+  new: "Thus, of the three ANNs compared to the ADALINE network, only the RNN showed an advantage in using complex non-linear structures, and only at a much higher computational cost."

@@ -1,0 +1,20 @@
+== 6 dB
+board: wall 0.568 s (transfer 0.194 s), engine time 0.3724 s (18620258 cycles)
+board: 2.148e+06 presentations/s on chip, 1.407e+06 end to end
+bitexact
+BER mean 5.932e-02 median 5.410e-02  train MSE mean 2.50e-02
+== 10 dB
+board: wall 0.566 s (transfer 0.192 s), engine time 0.3724 s (18620258 cycles)
+board: 2.148e+06 presentations/s on chip, 1.413e+06 end to end
+bitexact
+BER mean 1.326e-02 median 1.085e-02  train MSE mean 5.00e-03
+== 14 dB
+board: wall 0.569 s (transfer 0.193 s), engine time 0.3724 s (18620258 cycles)
+board: 2.148e+06 presentations/s on chip, 1.407e+06 end to end
+bitexact
+BER mean 2.075e-03 median 9.000e-04  train MSE mean 2.67e-06
+== 21 dB
+board: wall 0.568 s (transfer 0.193 s), engine time 0.3724 s (18620258 cycles)
+board: 2.148e+06 presentations/s on chip, 1.408e+06 end to end
+bitexact
+BER mean 2.000e-05 median 0.000e+00  train MSE mean 7.85e-07

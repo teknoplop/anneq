@@ -1,0 +1,22 @@
+{
+  "files.associations": {
+    "*.C": "c",
+    "*.H": "c",
+    "*.patch": "diff"
+  },
+  "C_Cpp.default.includePath": [
+    "${workspaceFolder}/src/borland",
+    "${workspaceFolder}/src/clang/compat",
+    "${workspaceFolder}/src/openwatcom"
+  ],
+  "C_Cpp.default.defines": ["far="],
+  "C_Cpp.default.cStandard": "gnu89",
+  "C_Cpp.clang_format_style": "file",
+  "editor.formatOnSave": false,
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": ["src/tests"],
+  "search.exclude": {
+    "results/**/curves": true,
+    "src/clang/build*": true
+  }
+}

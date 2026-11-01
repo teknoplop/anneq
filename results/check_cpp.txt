@@ -1,0 +1,63 @@
+OK   1995          LMS   ch1 7tap 10dB    vs C build              3 files  BER         +0.0035500
+OK   1995          LMS   ch2 delay7 6dB   vs C build              3 files  BER         +0.0405667
+OK   1995          LMS   eta=0.09 retries vs C build              3 files  BER         +0.0953333
+OK   1995          LMS   telephone        vs C build              3 files  BER         +0.0101500
+OK   1995          RNN   ch1 2-3          vs C build              3 files  BER         +0.0068667
+OK   1995          RNN   telephone 10-4   vs C build              3 files  BER         +0.0086000
+OK   1995          RB    ch1              vs C build              1 files  BER         +0.0048000
+OK   1995          RB    ch2              vs C build              1 files  BER         +0.0063333
+OK   1995          BPBC  ch1 6dB          vs C build_fix          2 files  BER +0.045800000000000
+OK   LMS-FILL      LMS   ch1 7tap 10dB    vs C build_fix_LMS-FILL 3 files  BER         +0.0036250
+OK   LMS-FILL      LMS   ch2 delay7 6dB   vs C build_fix_LMS-FILL 3 files  BER         +0.0391000
+OK   LMS-FILL      LMS   eta=0.09 retries vs C build_fix_LMS-FILL 3 files  BER         +0.0000000
+OK   LMS-FILL      LMS   telephone        vs C build_fix_LMS-FILL 3 files  BER         +0.0113000
+OK   LMS-BIAS      LMS   ch1 7tap 10dB    vs C build_fix_LMS-BIAS 3 files  BER         +0.0038250
+OK   LMS-BIAS      LMS   ch2 delay7 6dB   vs C build_fix_LMS-BIAS 3 files  BER         +0.0408667
+OK   LMS-BIAS      LMS   eta=0.09 retries vs C build_fix_LMS-BIAS 3 files  BER         +0.0760333
+OK   LMS-BIAS      LMS   telephone        vs C build_fix_LMS-BIAS 3 files  BER         +0.0100500
+OK   RNN-FFWD      RNN   ch1 2-3          vs C build_fix_RNN-FFWD 3 files  BER         +0.0029667
+OK   RNN-FFWD      RNN   telephone 10-4   vs C build_fix_RNN-FFWD 3 files  BER         +0.0052000
+OK   RNN-KRON      RNN   ch1 2-3          vs C build_fix_RNN-KRON 3 files  BER         +0.0072000
+OK   RNN-KRON      RNN   telephone 10-4   vs C build_fix_RNN-KRON 3 files  BER         +0.0692000
+OK   all-C         LMS   ch1 7tap 10dB    vs C build_fix          3 files  BER         +0.0036250
+OK   all-C         LMS   ch2 delay7 6dB   vs C build_fix          3 files  BER         +0.0404000
+OK   all-C         LMS   eta=0.09 retries vs C build_fix          3 files  BER         +0.0061333
+OK   all-C         LMS   telephone        vs C build_fix          3 files  BER         +0.0115000
+OK   all-C         RNN   ch1 2-3          vs C build_fix          3 files  BER         +0.0043000
+OK   all-C         RNN   telephone 10-4   vs C build_fix          3 files  BER         +0.0700000
+OK   all-C         BPBC  ch1 6dB          vs C build_fix          2 files  BER +0.045800000000000
+OK   RETRY-CAP     LMS   ch1 7tap 10dB    vs anneq_fixed.py       5 files  BER         +0.0035500
+OK   RETRY-CAP     LMS   ch2 delay7 6dB   vs anneq_fixed.py       5 files  BER         +0.0405667
+OK   RETRY-CAP     LMS   eta=0.09 retries vs anneq_fixed.py       5 files  BER         +0.0953333
+OK   RETRY-CAP     LMS   telephone        vs anneq_fixed.py       5 files  BER         +0.0101500
+OK   RETRY-CAP     RNN   ch1 2-3          vs anneq_fixed.py       5 files  BER         +0.0068667
+OK   RETRY-CAP     RNN   telephone 10-4   vs anneq_fixed.py       5 files  BER         +0.0086000
+OK   SEED-ONCE     LMS   ch1 7tap 10dB    vs anneq_fixed.py       3 files  BER         +0.0034250
+OK   SEED-ONCE     LMS   ch2 delay7 6dB   vs anneq_fixed.py       3 files  BER         +0.0421000
+OK   SEED-ONCE     LMS   eta=0.09 retries vs anneq_fixed.py       3 files  BER         +0.0000000
+OK   SEED-ONCE     LMS   telephone        vs anneq_fixed.py       3 files  BER         +0.0114500
+OK   SEED-ONCE     RNN   ch1 2-3          vs anneq_fixed.py       3 files  BER         +0.0065333
+OK   SEED-ONCE     RNN   telephone 10-4   vs anneq_fixed.py       3 files  BER         +0.0086000
+OK   SEED-ONCE     RB    ch1              vs anneq_fixed.py       1 files  BER         +0.0042333
+OK   SEED-ONCE     RB    ch2              vs anneq_fixed.py       1 files  BER         +0.0063000
+OK   SEED-ONCE     BPBC  ch1 6dB          vs anneq_fixed.py       2 files  BER +0.051200000000000
+OK   RAND-PREAMBLE LMS   ch1 7tap 10dB    vs anneq_fixed.py       3 files  BER         +0.0035500
+OK   RAND-PREAMBLE LMS   ch2 delay7 6dB   vs anneq_fixed.py       3 files  BER         +0.0444667
+OK   RAND-PREAMBLE LMS   eta=0.09 retries vs anneq_fixed.py       3 files  BER         +0.0008000
+OK   RAND-PREAMBLE LMS   telephone        vs anneq_fixed.py       3 files  BER         +0.0108000
+OK   RAND-PREAMBLE RNN   ch1 2-3          vs anneq_fixed.py       3 files  BER         +0.0065667
+OK   RAND-PREAMBLE RNN   telephone 10-4   vs anneq_fixed.py       3 files  BER         +0.0055000
+OK   RAND-PREAMBLE RB    ch1              vs anneq_fixed.py       1 files  BER         +0.0045000
+OK   RAND-PREAMBLE RB    ch2              vs anneq_fixed.py       1 files  BER         +0.0069667
+OK   RAND-PREAMBLE BPBC  ch1 6dB          vs anneq_fixed.py       2 files  BER +0.048000000000000
+OK   BP-PATHS      BPBC  ch1 6dB          vs anneq_fixed.py       2 files  BER +0.045800000000000
+OK   all           LMS   ch1 7tap 10dB    vs anneq_fixed.py       5 files  BER         +0.0036000
+OK   all           LMS   ch2 delay7 6dB   vs anneq_fixed.py       5 files  BER         +0.0423000
+OK   all           LMS   eta=0.09 retries vs anneq_fixed.py       5 files  BER         +0.2378000
+OK   all           LMS   telephone        vs anneq_fixed.py       5 files  BER         +0.0129500
+OK   all           RNN   ch1 2-3          vs anneq_fixed.py       5 files  BER         +0.0049667
+OK   all           RNN   telephone 10-4   vs anneq_fixed.py       5 files  BER         +0.0633000
+OK   all           RB    ch1              vs anneq_fixed.py       1 files  BER         +0.0041000
+OK   all           RB    ch2              vs anneq_fixed.py       1 files  BER         +0.0073333
+OK   all           BPBC  ch1 6dB          vs anneq_fixed.py       2 files  BER +0.060850000000000
+ALL BYTE-EXACT

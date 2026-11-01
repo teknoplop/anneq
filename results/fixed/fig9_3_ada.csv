@@ -1,0 +1,13 @@
+impl,setting,trials,ber,fail_per_trial,final_err,hung,gaveup_per_trial,secs,final_err_all
+pyfix,snr=10,100,0.50378,10.0,nan,False,1.0,6.6,inf
+pyfix,snr=14,100,0.495425,10.0,nan,False,1.0,6.6,inf
+pyfix,snr=16,100,0.520014,10.0,nan,False,1.0,6.6,inf
+pyfix,snr=18,100,0.50646,10.0,nan,False,1.0,6.5,inf
+pyfix,snr=20,100,0.482492,10.0,nan,False,1.0,6.6,inf
+pyfix,snr=6,100,0.498193,10.0,nan,False,1.0,6.5,inf
+pyfix_pn31,snr=10,100,0.504162,10.0,nan,False,1.0,6.6,3.7677757267655403e+199
+pyfix_pn31,snr=14,100,0.516527,10.0,nan,False,1.0,6.5,2.366312725566561e+139
+pyfix_pn31,snr=16,100,0.507555,10.0,nan,False,1.0,6.6,3.307063431618412e+124
+pyfix_pn31,snr=18,100,0.492189,10.0,nan,False,1.0,6.6,7.637030205630352e+111
+pyfix_pn31,snr=20,100,0.499658,10.0,nan,False,1.0,6.6,4.1389231843493795e+102
+pyfix_pn31,snr=6,100,0.502444,10.0,nan,False,1.0,6.5,3.765132600893356e+273

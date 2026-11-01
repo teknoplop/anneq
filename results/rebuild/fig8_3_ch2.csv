@@ -1,0 +1,17 @@
+impl,setting,trials,ber,fail_per_trial,final_err,hung
+clang,snr=10,100,0.066738,,,False
+clang,snr=12,100,0.025427,,,False
+clang,snr=14,100,0.006408,,,False
+clang,snr=16,100,0.000859,,,False
+clang,snr=18,100,3.1e-05,,,False
+clang,snr=20,100,0.0,,,False
+clang,snr=6,100,0.212929,,,False
+clang,snr=8,100,0.132631,,,False
+pyline,snr=10,100,0.066738,,,False
+pyline,snr=12,100,0.025427,,,False
+pyline,snr=14,100,0.006408,,,False
+pyline,snr=16,100,0.000859,,,False
+pyline,snr=18,100,3.1e-05,,,False
+pyline,snr=20,100,0.0,,,False
+pyline,snr=6,100,0.212929,,,False
+pyline,snr=8,100,0.132631,,,False

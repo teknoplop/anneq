@@ -1,0 +1,5 @@
+impl,setting,trials,ber,fail_per_trial,final_err,hung
+clang_fix,snr=10,20,0.01568,,0.00230907388431037,False
+clang_fix,snr=14,20,0.000795,,3.44136338449e-06,False
+clang_fix,snr=21,20,1e-05,,1.36563305965e-06,False
+clang_fix,snr=6,20,0.067905,,0.04412898168601675,False
